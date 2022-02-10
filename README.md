@@ -4,7 +4,7 @@
   - Overall trading statistics
   - Trading pairs table with useful stats per symbol
 - Single pair history view
-  - Price graph with mapped indicator data for time period
+  - Price graph with mapped indicator data
   - Table with all trades made and their results
 - Trading activity overview
   - Pairs activity state summary
