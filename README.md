@@ -18,10 +18,10 @@
 
 # Usage
 
-Create .env file with properties described in the properties section below and then run
+Create .env file with variables described in the section below and then run
 `npm start`
 
-# Properties
+# Environment Variables
 
 These are mostly backend endpoints:
 
