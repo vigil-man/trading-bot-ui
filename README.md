@@ -1,12 +1,28 @@
+# Features
+
+- All pairs trading history view
+  - Overall trading statistics
+  - Trading pairs table with useful stats per symbol
+- Single pair history view
+  - Price graph with mapped indicator data for time period
+  - Table with all trades made and their results
+- Trading activity overview
+  - Pairs activity state summary
+  - Pairs activity table with state for each symbol
+  - Ability to sell all bought symbols, stop trading, refresh summary
+- Trading simulation view
+  - Ability to choose pairs for simulation
+  - Ability to start and view simulation results in form of trading history
+- Trading profit graph
+- Multiple trading bot instances support
+
 # Usage
 
 Create .env file with properties described in the properties section below and then run
 `npm start`
-___
 
 # Properties
 
-___
 These are mostly backend endpoints:
 
 - REACT_APP_BOT_HOST - trading bot host
