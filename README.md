@@ -25,7 +25,6 @@ Create .env file with variables described in the section below and then run
 
 These are mostly backend endpoints:
 
-- REACT_APP_BOT_HOST - trading bot host
 - REACT_APP_GRAPH_ENDPOINT - fetches graph data (price and indicators history) for trading pair
 - REACT_APP_TRADING_HISTORY_ENDPOINT - fetches trading history for all pairs
 - REACT_APP_TRADING_HISTORY_SIMULATION_ENDPOINT - fetches trading history for pairs involved into previous simulation

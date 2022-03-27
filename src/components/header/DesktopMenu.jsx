@@ -1,34 +1,34 @@
 import React from 'react'
 import { Input, Menu, MenuMenu } from 'semantic-ui-react'
 import { Link } from 'react-router-dom'
-import { updateBotPort } from '../../redux/ports/posts.slice'
 import { useDispatch, useSelector } from 'react-redux'
-import { selectBotPort } from '../../redux/ports/ports.selectors'
+import { selectBotUrl } from '../../redux/config/config.selectors'
+import { updateBotUrl } from '../../redux/config/config.slice'
 
 const DesktopMenu = () => {
-  const botPort = useSelector(selectBotPort)
+  const botUrl = useSelector(selectBotUrl)
   const dispatch = useDispatch()
   return (
-    <Menu size="huge" pointing>
-      <MenuMenu position={'right'}>
-        <Menu.Item as={Link} to="/">
+    <Menu size='huge' pointing>
+      <MenuMenu position='right'>
+        <Menu.Item as={Link} to='/'>
           Overview
         </Menu.Item>
-        <Menu.Item as={Link} to="/history">
+        <Menu.Item as={Link} to='/history'>
           History
         </Menu.Item>
-        <Menu.Item as={Link} to="/simulation">
+        <Menu.Item as={Link} to='/simulation'>
           Simulation
         </Menu.Item>
-        <Menu.Item as={Link} to="/graphs">
+        <Menu.Item as={Link} to='/graphs'>
           Graphs
         </Menu.Item>
       </MenuMenu>
-      <Menu.Item position={'right'}>
+      <Menu.Item position='right'>
         <Input
-          label="Bot port"
-          defaultValue={botPort}
-          onChange={({ target: { value } }) => dispatch(updateBotPort(value))}
+          label='Bot URL'
+          defaultValue={botUrl}
+          onChange={({ target: { value } }) => dispatch(updateBotUrl(value))}
         />
       </Menu.Item>
     </Menu>

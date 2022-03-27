@@ -4,6 +4,7 @@ import { RequestStatus } from '../request.statuses'
 
 const INITIAL_STATE = {
   tradingEnabled: false,
+  botUrl: 'http://localhost:8080',
   status: RequestStatus.IDLE,
   error: null
 }
@@ -16,6 +17,11 @@ const configSlice = createSlice(
   {
     name: 'config',
     initialState: INITIAL_STATE,
+    reducers: {
+      updateBotUrl: (state, action) => {
+        state.botUrl = action.payload
+      }
+    },
     extraReducers: {
       [toggleTrading.pending]: (state) => {
         state.status = RequestStatus.LOADING
@@ -31,5 +37,7 @@ const configSlice = createSlice(
     }
   }
 )
+
+export const { updateBotUrl } = configSlice.actions
 
 export default configSlice

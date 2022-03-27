@@ -7,6 +7,11 @@ export const selectTradingEnabled = createSelector(
   configSlice => configSlice.tradingEnabled
 )
 
+export const selectBotUrl = createSelector(
+  [configSlice],
+  configSlice => configSlice.botUrl
+)
+
 export const selectConfigStatus = createSelector(
   [configSlice],
   configSlice => configSlice.status

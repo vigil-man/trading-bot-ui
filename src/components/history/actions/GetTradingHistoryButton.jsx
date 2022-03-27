@@ -1,6 +1,6 @@
 import { Button } from 'semantic-ui-react'
 import { useDispatch, useSelector } from 'react-redux'
-import { selectBotPort } from '../../../redux/ports/ports.selectors'
+import { selectBotUrl } from '../../../redux/config/config.selectors'
 import { getTradingHistory } from '../../../redux/trading-history/trading-history.slice'
 import moment from 'moment'
 import { Constants } from '../../../constants'
@@ -9,19 +9,21 @@ import { RequestStatus } from '../../../redux/request.statuses'
 import { selectTradingHistoryStatus } from '../../../redux/trading-history/trading-history.selectors'
 
 const GetTradingHistoryButton = () => {
-  const botPort = useSelector(selectBotPort)
+  const botUrl = useSelector(selectBotUrl)
   const fromTime = useSelector(selectFromTime)
   const toTime = useSelector(selectToTime)
   const tradingPairsStatus = useSelector(selectTradingHistoryStatus)
   const dispatch = useDispatch()
   return (
-    <Button primary
-            loading={tradingPairsStatus === RequestStatus.LOADING}
-            onClick={() => dispatch(getTradingHistory({
-              url: `${process.env.REACT_APP_BOT_HOST}:${botPort}${process.env.REACT_APP_TRADING_HISTORY_ENDPOINT}`,
-              fromTimestamp: moment(fromTime, Constants.dateTimeFormat).valueOf(),
-              toTimestamp: toTime ? moment(toTime, Constants.dateTimeFormat).valueOf() : moment.now()
-            }))}>
+    <Button
+      primary
+      loading={tradingPairsStatus === RequestStatus.LOADING}
+      onClick={() => dispatch(getTradingHistory({
+        url: `${botUrl}${process.env.REACT_APP_TRADING_HISTORY_ENDPOINT}`,
+        fromTimestamp: moment(fromTime, Constants.dateTimeFormat).valueOf(),
+        toTimestamp: toTime ? moment(toTime, Constants.dateTimeFormat).valueOf() : moment.now()
+      }))}
+    >
       Get History
     </Button>
   )
