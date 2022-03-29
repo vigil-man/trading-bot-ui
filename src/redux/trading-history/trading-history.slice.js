@@ -1,23 +1,10 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import ky from 'ky'
 import { RequestStatus } from '../request.statuses'
+import { DefaultTradingHistoryState } from '../../constants'
 
 const INITIAL_STATE = {
-  tradingHistory: {
-    totalProfit: 0,
-    avgProfit: 0,
-    avgPriceDeltaPercent: 0,
-    tradingPairs: {},
-    positiveTradesProfit: 0,
-    negativeTradesProfit: 0,
-
-    notFilledOrdersCount: 0,
-    filledOrdersCount: 0,
-    semiFilledOrdersCount: 0,
-    positiveTradesCount: 0,
-    negativeTradesCount: 0,
-    zeroTradesCount: 0
-  },
+  tradingHistory: DefaultTradingHistoryState,
   status: RequestStatus.IDLE,
   error: null
 }
@@ -28,10 +15,6 @@ export const getTradingHistory = createAsyncThunk('tradingHistory/getTradingHist
     toTimestamp: payload.toTimestamp
   }
   return await ky.get(payload.url, { searchParams: searchParams, timeout: false }).json()
-})
-
-export const getSimulationHistory = createAsyncThunk('tradingHistory/getSimulationHistory', async payload => {
-  return await ky.get(payload, { timeout: false }).json()
 })
 
 const tradingHistorySlice = createSlice(
@@ -47,17 +30,6 @@ const tradingHistorySlice = createSlice(
         state.tradingHistory = payload
       },
       [getTradingHistory.rejected]: (state, { payload, error }) => {
-        state.status = RequestStatus.ERROR
-        state.error = payload || error.message
-      },
-      [getSimulationHistory.pending]: (state) => {
-        state.status = RequestStatus.LOADING
-      },
-      [getSimulationHistory.fulfilled]: (state, { payload }) => {
-        state.status = RequestStatus.SUCCESS
-        state.tradingHistory = payload
-      },
-      [getSimulationHistory.rejected]: (state, { payload, error }) => {
         state.status = RequestStatus.ERROR
         state.error = payload || error.message
       }

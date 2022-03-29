@@ -1,17 +1,14 @@
-import { useParams } from 'react-router-dom'
-import { useSelector } from 'react-redux'
-import { selectTradingPairs } from '../../../redux/trading-history/trading-history.selectors'
+import { useLocation } from 'react-router-dom'
 import { useMemo } from 'react'
 import SortableTable from '../../SortableTable'
 import { columns } from './columns'
 
 const TradesTable = () => {
-  const { symbol } = useParams()
-  const tradingPairs = useSelector(selectTradingPairs)
+  const { state } = useLocation()
 
   const data = useMemo(
-    () => tradingPairs[symbol]?.trades || [],
-    [symbol, tradingPairs]
+    () => state?.trades || [],
+    [state]
   )
 
   const getSortType = column =>
@@ -20,9 +17,11 @@ const TradesTable = () => {
       : 'alphanumeric'
 
   return (
-    <SortableTable data={data}
-                   columns={columns}
-                   getSortType={getSortType}/>
+    <SortableTable
+      data={data}
+      columns={columns}
+      getSortType={getSortType}
+    />
   )
 }
 

@@ -1,8 +1,3 @@
-import { useSelector } from 'react-redux'
-import {
-  selectTradingHistoryStatus,
-  selectTradingPairs
-} from '../../../redux/trading-history/trading-history.selectors'
 import { useMemo } from 'react'
 import { useHistory } from 'react-router-dom'
 import SortableTable from '../../SortableTable'
@@ -10,9 +5,7 @@ import { columns } from './columns'
 import { Dimmer, DimmerDimmable, Loader } from 'semantic-ui-react'
 import { RequestStatus } from '../../../redux/request.statuses'
 
-const TradingPairsHistoryTable = () => {
-  const tradingPairs = useSelector(selectTradingPairs)
-  const tradingPairsStatus = useSelector(selectTradingHistoryStatus)
+const TradingPairsHistoryTable = ({ tradingPairs, status }) => {
   const history = useHistory()
   const data = useMemo(
     () => Object.entries(tradingPairs).map(
@@ -35,18 +28,23 @@ const TradingPairsHistoryTable = () => {
       ? 'basic'
       : 'alphanumeric'
 
-  const onRowClick = row => history.push(`/history/${row.original.symbol}`)
+  const onRowClick = row => history.push({
+    pathname: `/history/${row.original.symbol}`,
+    state: tradingPairs[row.original.symbol]
+  })
 
   return (
-    <DimmerDimmable blurring dimmed={tradingPairsStatus === RequestStatus.LOADING}>
-      <Dimmer active={tradingPairsStatus === RequestStatus.LOADING} inverted>
-        <Loader size="massive"/>
+    <DimmerDimmable blurring dimmed={status === RequestStatus.LOADING}>
+      <Dimmer active={status === RequestStatus.LOADING} inverted>
+        <Loader size='massive' />
       </Dimmer>
-      <SortableTable data={data}
-                     columns={columns}
-                     getSortType={getSortType}
-                     selectable={true}
-                     onRowClick={onRowClick}/>
+      <SortableTable
+        data={data}
+        columns={columns}
+        getSortType={getSortType}
+        selectable
+        onRowClick={onRowClick}
+      />
     </DimmerDimmable>
   )
 }
