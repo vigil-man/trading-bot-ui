@@ -6,6 +6,7 @@ import { useEffect } from 'react'
 import { selectBotUrl } from '../../../redux/config/config.selectors'
 import { RequestStatus } from '../../../redux/request.statuses'
 import { selectSimulationStatus } from '../../../redux/simulation/simulation.selectors'
+import { Endpoint } from '../../../constant'
 
 const SymbolSelector = () => {
   const dispatch = useDispatch()
@@ -17,7 +18,7 @@ const SymbolSelector = () => {
   const options = symbols.map(symbol => ({ text: symbol, value: symbol }))
 
   useEffect(() => {
-    dispatch(fetchAllSymbols(`${botUrl}${process.env.REACT_APP_ACTIVITY_GET_SYMBOLS_ENDPOINT}`))
+    dispatch(fetchAllSymbols(`${botUrl}${process.env.REACT_APP_CORE_PORT}${Endpoint.PAIR_GET_SYMBOLS}`))
   }, [dispatch, botUrl])
 
   return (

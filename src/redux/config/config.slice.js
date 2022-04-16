@@ -4,7 +4,7 @@ import { RequestStatus } from '../request.statuses'
 
 const INITIAL_STATE = {
   tradingEnabled: false,
-  botUrl: 'http://localhost:8080',
+  botUrl: 'http://localhost',
   status: RequestStatus.IDLE,
   error: null
 }

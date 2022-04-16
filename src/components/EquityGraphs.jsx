@@ -2,7 +2,7 @@ import { CartesianGrid, Legend, Line, LineChart, ResponsiveContainer, Tooltip, X
 import { useSelector } from 'react-redux'
 import { selectTradingPairs } from '../redux/trading-history/trading-history.selectors'
 import moment from 'moment'
-import { Constants } from '../constants'
+import { Common } from '../constant'
 import { selectSimulationPairs } from '../redux/simulation/simulation.selectors'
 import { Container, Header } from 'semantic-ui-react'
 
@@ -11,8 +11,8 @@ const EquityGraphs = () => {
   const simulationPairs = useSelector(selectSimulationPairs)
 
   const profitDataTimeComparator = (first, second) => {
-    return moment(first.sellTime, Constants.dateTimeFormat).valueOf() -
-      moment(second.sellTime, Constants.dateTimeFormat).valueOf()
+    return moment(first.sellTime, Common.dateTimeFormat).valueOf() -
+      moment(second.sellTime, Common.dateTimeFormat).valueOf()
   }
 
   const profitCumulativeSum = (profitDataSummed => currentProfitData => ({

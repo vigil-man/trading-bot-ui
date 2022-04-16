@@ -4,6 +4,7 @@ import { selectBotUrl } from '../../../redux/config/config.selectors'
 import { fetchActivitySummary } from '../../../redux/trading-activity/trading-activity.slice'
 import { RequestStatus } from '../../../redux/request.statuses'
 import { selectActivityStatus } from '../../../redux/trading-activity/trading-activity.selectors'
+import { Endpoint } from '../../../constant'
 
 const RefreshActivitySummaryButton = () => {
   const dispatch = useDispatch()
@@ -15,7 +16,7 @@ const RefreshActivitySummaryButton = () => {
       primary
       loading={activityStatus === RequestStatus.LOADING}
       onClick={() => dispatch(fetchActivitySummary(
-        `${botUrl}${process.env.REACT_APP_ACTIVITY_GET_SUMMARY_ENDPOINT}`)
+        `${botUrl}${process.env.REACT_APP_CORE_PORT}${Endpoint.STATE}`)
       )}
     >
       Refresh summary

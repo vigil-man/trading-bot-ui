@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import ky from 'ky'
 import { RequestStatus } from '../request.statuses'
-import { DefaultTradingHistoryState } from '../../constants'
+import { DefaultTradingHistoryState } from '../../constant'
 
 const INITIAL_STATE = {
   simulation: DefaultTradingHistoryState,
