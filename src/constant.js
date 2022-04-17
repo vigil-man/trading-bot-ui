@@ -1,9 +1,6 @@
-export const Common = {
-  dateTimeFormat: 'yyyy MMM/DD - HH:mm',
-  neutralScore: 'NEUTRAL'
-}
+export const NEUTRAL_SCORE = 'NEUTRAL'
 
-export const ScoreTypesColor = {
+export const TradingActionColor = {
   BUY: '#41a84d',
   SELL: '#bf1c1c'
 }

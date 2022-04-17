@@ -1,16 +1,13 @@
 import { Dot } from 'recharts'
-import { Common, ScoreTypesColor } from '../../../constant'
+import { NEUTRAL_SCORE, TradingActionColor } from '../../../constant'
 
 const ScoreDot = (props) => {
-  const { payload: { indicatorRecords } } = props
+  const { payload: { tradingAction } } = props
 
-  // TODO: Support multiple score types
-  const scoreType = indicatorRecords?.[0]?.scoreType
-
-  const getCustomDot = (scoreType) => <Dot {...props} strokeWidth={5} stroke={ScoreTypesColor[scoreType]} r={1} />
+  const getCustomDot = (tradingAction) => <Dot {...props} strokeWidth={5} stroke={TradingActionColor[tradingAction]} r={1} />
 
   return (
-    scoreType && scoreType !== Common.neutralScore ? getCustomDot(scoreType) : null
+    tradingAction && tradingAction !== NEUTRAL_SCORE ? getCustomDot(tradingAction) : null
   )
 }
 

@@ -1,6 +1,6 @@
 import { Button } from 'semantic-ui-react'
 import moment from 'moment'
-import { Common, Endpoint } from '../../../constant'
+import { Endpoint } from '../../../constant'
 import { useDispatch, useSelector } from 'react-redux'
 import { selectFromTime, selectToTime } from '../../../redux/date-picker/date-picker.selectors'
 import { selectChosenSymbols, selectSymbols, selectUseAllSymbols } from '../../../redux/symbol/symbol.selectors'
@@ -8,6 +8,7 @@ import { selectBotUrl } from '../../../redux/config/config.selectors'
 import { executeSimulation } from '../../../redux/simulation/simulation.slice'
 import { selectSimulationStatus } from '../../../redux/simulation/simulation.selectors'
 import { RequestStatus } from '../../../redux/request.statuses'
+import { getEpochMilli } from '../../../time-utils'
 
 const ExecuteSimulationButton = () => {
   const botUrl = useSelector(selectBotUrl)
@@ -20,8 +21,8 @@ const ExecuteSimulationButton = () => {
   const dispatch = useDispatch()
   const requestBody = {
     symbols: useAll ? symbols : chosenSymbols,
-    fromTimestamp: moment(fromTime, Common.dateTimeFormat).valueOf(),
-    toTimestamp: toTime ? moment(toTime, Common.dateTimeFormat).valueOf() : moment.now()
+    fromTimestamp: getEpochMilli(fromTime),
+    toTimestamp: toTime ? getEpochMilli(toTime) : moment.now()
   }
   return (
     <Button

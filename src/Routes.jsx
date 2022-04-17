@@ -4,12 +4,12 @@ import EquityGraphs from './components/EquityGraphs'
 import TradingPairHistoryContainer from './components/history/TradingPairHistoryContainer'
 import React from 'react'
 import TradingHistory from './components/history/TradingHistory'
-import TradingActivity from './components/activity/TradingActivity'
+import TradingState from './components/state/TradingState'
 
 const Routes = () => (
   <Switch>
     <Route exact path='/'>
-      <TradingActivity />
+      <TradingState />
     </Route>
     <Route path='/simulation'>
       <Simulation />

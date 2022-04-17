@@ -3,9 +3,10 @@ import { Button } from 'semantic-ui-react'
 import { selectBotUrl } from '../../../redux/config/config.selectors'
 import { getGraphData } from '../../../redux/graph/graph.slice'
 import moment from 'moment'
-import { Common, Endpoint } from '../../../constant'
+import { Endpoint } from '../../../constant'
 import { selectFromTime, selectToTime } from '../../../redux/date-picker/date-picker.selectors'
 import { useParams } from 'react-router-dom'
+import { getEpochMilli } from '../../../time-utils'
 
 const GetGraphDataButton = () => {
   const dispatch = useDispatch()
@@ -18,8 +19,9 @@ const GetGraphDataButton = () => {
     <Button
       primary onClick={() => dispatch(getGraphData({
         url: `${botUrl}${process.env.REACT_APP_CORE_PORT}${Endpoint.GRAPH}/${symbol}`,
-        from: moment(fromTime, Common.dateTimeFormat).valueOf(),
-        to: toTime ? moment(toTime, Common.dateTimeFormat).valueOf() : moment.now()
+        from: getEpochMilli(fromTime),
+        to: toTime ? getEpochMilli(toTime) : moment.now(),
+        stepMinutes: 60
       }))}
     >
       Get data

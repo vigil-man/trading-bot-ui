@@ -5,22 +5,18 @@ export const columns = [
   },
   {
     Header: 'Symbol',
-    accessor: 'symbol',
+    accessor: 'symbol'
   },
   {
     Header: 'Last update minutes ago',
-    accessor: 'minutesDeltaFromLastUpdate',
-  },
-  {
-    Header: 'Trading active',
-    accessor: 'tradingActive',
+    accessor: 'minutesDeltaFromLastUpdate'
   },
   {
     Header: 'Bought',
-    accessor: 'bought',
+    accessor: 'bought'
   },
   {
     Header: 'Active',
-    accessor: 'active',
+    accessor: 'active'
   }
 ]

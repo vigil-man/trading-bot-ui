@@ -3,13 +3,13 @@ import { useSelector } from 'react-redux'
 import { RequestStatus } from '../../redux/request.statuses'
 import { selectActivityStatus, selectActivitySummary } from '../../redux/trading-activity/trading-activity.selectors'
 
-const TradingActivityStatistics = () => {
+const TradingStateStats = () => {
   const activitySummary = useSelector(selectActivitySummary)
   const activitySummaryStatus = useSelector(selectActivityStatus)
   return (
     <DimmerDimmable blurring dimmed={activitySummaryStatus === RequestStatus.LOADING}>
-      <Dimmer active={activitySummaryStatus === RequestStatus.LOADING} inverted/>
-      <StatisticGroup size="mini">
+      <Dimmer active={activitySummaryStatus === RequestStatus.LOADING} inverted />
+      <StatisticGroup size='mini'>
         <Statistic>
           <Statistic.Value>{activitySummary.timestamp}</Statistic.Value>
           <Statistic.Label>Last update</Statistic.Label>
@@ -27,4 +27,4 @@ const TradingActivityStatistics = () => {
   )
 }
 
-export default TradingActivityStatistics
+export default TradingStateStats

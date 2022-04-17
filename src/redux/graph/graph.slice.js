@@ -11,7 +11,8 @@ const INITIAL_STATE = {
 export const getGraphData = createAsyncThunk('graph/getData', async payload => {
   const searchParams = {
     from: payload.from,
-    to: payload.to
+    to: payload.to,
+    stepMinutes: payload.stepMinutes
   }
   return await ky.get(payload.url, { searchParams: searchParams }).json()
 })

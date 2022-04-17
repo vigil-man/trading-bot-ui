@@ -2,7 +2,7 @@ import { DateTimeInput } from 'semantic-ui-calendar-react'
 import { useDispatch, useSelector } from 'react-redux'
 import { updateFromTime, updateToTime } from '../redux/date-picker/date-picker.slice'
 import { selectFromTime, selectToTime } from '../redux/date-picker/date-picker.selectors'
-import { Common } from '../constant'
+import { DATE_TIME_FORMAT } from '../time-utils'
 
 const DateRangePicker = () => {
   const fromTime = useSelector(selectFromTime)
@@ -18,7 +18,7 @@ const DateRangePicker = () => {
         iconPosition='left'
         disableMinute
         closable
-        dateTimeFormat={Common.dateTimeFormat}
+        dateTimeFormat={DATE_TIME_FORMAT}
         onChange={(event, { value }) => dispatch(updateFromTime(value))}
       />
       <DateTimeInput
@@ -28,7 +28,7 @@ const DateRangePicker = () => {
         iconPosition='left'
         disableMinute
         closable
-        dateTimeFormat={Common.dateTimeFormat}
+        dateTimeFormat={DATE_TIME_FORMAT}
         onChange={(event, { value }) => dispatch(updateToTime(value))}
       />
     </>

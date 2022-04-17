@@ -1,21 +1,20 @@
 import { Grid, GridColumn, GridRow } from 'semantic-ui-react'
 import TradingPairsActivityTable from './pairs-table/TradingPairsActivityTable'
-import TradingActivityActionPanel from './TradingActivityActionPanel'
+import TradingStateActionPanel from './TradingStateActionPanel'
 
-const TradingActivity = () => {
-
+const TradingState = () => {
   return (
     <Grid centered>
       <GridRow>
-        <TradingActivityActionPanel/>
+        <TradingStateActionPanel />
       </GridRow>
-      <GridRow verticalAlign="middle">
+      <GridRow verticalAlign='middle'>
         <GridColumn width={15}>
-          <TradingPairsActivityTable/>
+          <TradingPairsActivityTable />
         </GridColumn>
       </GridRow>
     </Grid>
   )
 }
 
-export default TradingActivity
+export default TradingState

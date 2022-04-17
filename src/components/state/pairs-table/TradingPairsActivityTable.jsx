@@ -20,7 +20,6 @@ const TradingPairsActivityTable = () => {
         {
           symbol: activity.symbol,
           minutesDeltaFromLastUpdate: activity.minutesDeltaFromLastUpdate,
-          tradingActive: String(activity.tradingActive),
           bought: String(activity.bought),
           active: String(activity.active)
         }
