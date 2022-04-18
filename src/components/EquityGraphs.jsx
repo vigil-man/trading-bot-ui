@@ -1,12 +1,18 @@
 import { CartesianGrid, Legend, Line, LineChart, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts'
-import { useSelector } from 'react-redux'
-import { selectTradingPairs } from '../redux/trading-history/trading-history.selectors'
-import { selectSimulationPairs } from '../redux/simulation/simulation.selectors'
 import { Container, Header } from 'semantic-ui-react'
+import { useSimulationHistoryMutation, useTradingHistoryMutation } from '../redux/api/trading-history.api'
+import { Endpoint } from '../constant'
 
 const EquityGraphs = () => {
-  const tradingPairs = useSelector(selectTradingPairs)
-  const simulationPairs = useSelector(selectSimulationPairs)
+  const [, { simulationPairs }] =
+    useSimulationHistoryMutation(
+      {
+        selectFromResult: ({ data }) => ({
+          simulationPairs: data.tradingPairs
+        }),
+        fixedCacheKey: Endpoint.HISTORY_SIMULATION
+      })
+  const [, { data: tradingPairs }] = useTradingHistoryMutation({ fixedCacheKey: Endpoint.HISTORY })
 
   const profitDataTimeComparator = (first, second) => first.sellTime - second.sellTime
 

@@ -3,9 +3,8 @@ import { useHistory } from 'react-router-dom'
 import SortableTable from '../../SortableTable'
 import { columns } from './columns'
 import { Dimmer, DimmerDimmable, Loader } from 'semantic-ui-react'
-import { RequestStatus } from '../../../redux/request.statuses'
 
-const TradingPairsHistoryTable = ({ tradingPairs, status }) => {
+const TradingPairsHistoryTable = ({ tradingPairs, isLoading }) => {
   const history = useHistory()
   const data = useMemo(
     () => Object.entries(tradingPairs).map(
@@ -34,8 +33,8 @@ const TradingPairsHistoryTable = ({ tradingPairs, status }) => {
   })
 
   return (
-    <DimmerDimmable blurring dimmed={status === RequestStatus.LOADING}>
-      <Dimmer active={status === RequestStatus.LOADING} inverted>
+    <DimmerDimmable blurring dimmed={isLoading}>
+      <Dimmer active={isLoading} inverted>
         <Loader size='massive' />
       </Dimmer>
       <SortableTable

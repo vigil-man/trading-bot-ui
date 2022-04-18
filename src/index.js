@@ -12,30 +12,36 @@ import storage from 'redux-persist/lib/storage'
 import { PersistGate } from 'redux-persist/integration/react'
 import Header from './components/header/Header'
 import Routes from './Routes'
+import { tradingHistoryApi } from './redux/api/trading-history.api'
+import { historicalDataApi } from './redux/api/historical-data.api'
 
 const persistConfig = {
   key: 'root',
   storage,
-  blacklist: ['graph']
+  blacklist: [historicalDataApi.reducerPath]
 }
 
 const persistedReducer = persistReducer(persistConfig, rootReducer)
 
+const additionalMiddleware = [logger, tradingHistoryApi.middleware]
+
 const store = configureStore({
-    reducer: persistedReducer,
-    middleware: getDefaultMiddleware => getDefaultMiddleware().concat(logger),
-    devTools: process.env.NODE_ENV !== 'production'
-  }
+  reducer: persistedReducer,
+  middleware: getDefaultMiddleware => getDefaultMiddleware().concat(additionalMiddleware),
+  devTools: process.env.NODE_ENV !== 'production'
+}
 )
 
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
-      <PersistGate loading={null}
-                   persistor={persistStore(store)}>
+      <PersistGate
+        loading={null}
+        persistor={persistStore(store)}
+      >
         <BrowserRouter>
-          <Header/>
-          <Routes/>
+          <Header />
+          <Routes />
         </BrowserRouter>
       </PersistGate>
     </Provider>

@@ -1,28 +1,26 @@
-import { useDispatch, useSelector } from 'react-redux'
+import { useSelector } from 'react-redux'
 import { Button } from 'semantic-ui-react'
-import { selectBotUrl } from '../../../redux/config/config.selectors'
-import { getGraphData } from '../../../redux/graph/graph.slice'
 import moment from 'moment'
 import { Endpoint } from '../../../constant'
 import { selectFromTime, selectToTime } from '../../../redux/date-picker/date-picker.selectors'
 import { useParams } from 'react-router-dom'
 import { getEpochMilli } from '../../../time-utils'
+import { useCandlesMutation } from '../../../redux/api/historical-data.api'
 
 const GetGraphDataButton = () => {
-  const dispatch = useDispatch()
-  const botUrl = useSelector(selectBotUrl)
   const fromTime = useSelector(selectFromTime)
   const toTime = useSelector(selectToTime)
   const { symbol } = useParams()
+  const [getCandles] = useCandlesMutation({ fixedCacheKey: Endpoint.CANDLES })
 
   return (
     <Button
-      primary onClick={() => dispatch(getGraphData({
-        url: `${botUrl}${process.env.REACT_APP_CORE_PORT}${Endpoint.GRAPH}/${symbol}`,
-        from: getEpochMilli(fromTime),
-        to: toTime ? getEpochMilli(toTime) : moment.now(),
-        stepMinutes: 60
-      }))}
+      primary onClick={() => getCandles({
+        symbol: symbol,
+        fromTimestamp: getEpochMilli(fromTime),
+        toTimestamp: toTime ? getEpochMilli(toTime) : moment.now(),
+        intervalSeconds: 60 * 60
+      })}
     >
       Get data
     </Button>

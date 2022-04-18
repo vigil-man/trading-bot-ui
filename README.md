@@ -6,9 +6,9 @@
 - [Single pair history view](https://github.com/vigil-man/trading-bot-ui/wiki/PairHistory)
     - Price graph with mapped indicator data
     - Table with all trades made and their results
-- [Trading activity overview](https://github.com/vigil-man/trading-bot-ui/wiki/Overview)
-    - Pairs activity state summary
-    - Pairs activity table with state for each symbol
+- [Trading state overview](https://github.com/vigil-man/trading-bot-ui/wiki/Overview)
+    - Trading state summary
+    - Trading pairs state table
     - Ability to sell all bought symbols, stop trading, refresh summary
 - [Trading simulation view](https://github.com/vigil-man/trading-bot-ui/wiki/Simulation)
     - Ability to choose pairs for simulation

@@ -1,21 +1,21 @@
 import { useDispatch, useSelector } from 'react-redux'
 import { Button } from 'semantic-ui-react'
 import { selectBotUrl } from '../../../redux/config/config.selectors'
-import { fetchActivitySummary } from '../../../redux/trading-activity/trading-activity.slice'
+import { fetchTradingStateSummary } from '../../../redux/trading-state/trading-state.slice'
 import { RequestStatus } from '../../../redux/request.statuses'
-import { selectActivityStatus } from '../../../redux/trading-activity/trading-activity.selectors'
+import { selectTradingStateStatus } from '../../../redux/trading-state/trading-state.selectors'
 import { Endpoint } from '../../../constant'
 
-const RefreshActivitySummaryButton = () => {
+const RefreshTradingStateSummaryButton = () => {
   const dispatch = useDispatch()
   const botUrl = useSelector(selectBotUrl)
-  const activityStatus = useSelector(selectActivityStatus)
+  const tradingStateStatus = useSelector(selectTradingStateStatus)
 
   return (
     <Button
       primary
-      loading={activityStatus === RequestStatus.LOADING}
-      onClick={() => dispatch(fetchActivitySummary(
+      loading={tradingStateStatus === RequestStatus.LOADING}
+      onClick={() => dispatch(fetchTradingStateSummary(
         `${botUrl}${process.env.REACT_APP_CORE_PORT}${Endpoint.STATE}`)
       )}
     >
@@ -24,4 +24,4 @@ const RefreshActivitySummaryButton = () => {
   )
 }
 
-export default RefreshActivitySummaryButton
+export default RefreshTradingStateSummaryButton

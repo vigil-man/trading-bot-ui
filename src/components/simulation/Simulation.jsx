@@ -2,12 +2,11 @@ import SimulationActionPanel from './SimulationActionPanel'
 import { Grid, GridColumn, GridRow } from 'semantic-ui-react'
 import TradingHistoryStatistics from '../history/TradingHistoryStatistics'
 import TradingPairsHistoryTable from '../history/pairs-table/TradingPairsHistoryTable'
-import { useSelector } from 'react-redux'
-import { selectSimulation, selectSimulationStatus } from '../../redux/simulation/simulation.selectors'
+import { useSimulationHistoryMutation } from '../../redux/api/trading-history.api'
+import { DefaultTradingHistoryState, Endpoint } from '../../constant'
 
 const Simulation = () => {
-  const simulation = useSelector(selectSimulation)
-  const simulationStatus = useSelector(selectSimulationStatus)
+  const [, { data = DefaultTradingHistoryState, isLoading }] = useSimulationHistoryMutation({ fixedCacheKey: Endpoint.SIMULATION })
   return (
     <Grid centered>
       <GridRow>
@@ -17,12 +16,12 @@ const Simulation = () => {
       </GridRow>
       <GridRow>
         <GridColumn>
-          <TradingHistoryStatistics history={simulation} status={simulationStatus} />
+          <TradingHistoryStatistics history={data} isLoading={isLoading} />
         </GridColumn>
       </GridRow>
       <GridRow>
         <GridColumn width={15}>
-          <TradingPairsHistoryTable tradingPairs={simulation.tradingPairs} status={simulationStatus} />
+          <TradingPairsHistoryTable tradingPairs={data.tradingPairs} isLoading={isLoading} />
         </GridColumn>
       </GridRow>
     </Grid>

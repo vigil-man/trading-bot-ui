@@ -1,7 +1,7 @@
 import { Grid, GridColumn } from 'semantic-ui-react'
 import StartTradingButton from './actions/StartTradingButton'
 import SellBoughtButton from './actions/SellBoughtButton'
-import RefreshActivitySummaryButton from './actions/RefreshActivitySummaryButton'
+import RefreshTradingStateSummaryButton from './actions/RefreshTradingStateSummaryButton'
 import TradingStateStats from './TradingStateStats'
 
 const TradingStateActionPanel = () =>
@@ -13,7 +13,7 @@ const TradingStateActionPanel = () =>
       <StartTradingButton />
     </GridColumn>
     <GridColumn width={4}>
-      <RefreshActivitySummaryButton />
+      <RefreshTradingStateSummaryButton />
     </GridColumn>
     <GridColumn width={6}>
       <TradingStateStats />

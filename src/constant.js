@@ -22,7 +22,7 @@ export const DefaultTradingHistoryState = {
 }
 
 export const Endpoint = {
-  GRAPH: '/graph',
+  CANDLES: '/historical-data/candles',
   HISTORY: '/history',
   HISTORY_SIMULATION: '/history/simulation',
   STATE: '/state',
@@ -31,4 +31,10 @@ export const Endpoint = {
 
   CONFIG_TOGGLE_TRADING: '/config/toggle-trading',
   SIMULATION: '/simulation'
+}
+
+export const ReducerPath = {
+  TRADING_HISTORY: 'tradingHistoryApi',
+  HISTORICAL_DATA: 'historicalDataApi',
+  SIMULATION: 'simulationApi'
 }

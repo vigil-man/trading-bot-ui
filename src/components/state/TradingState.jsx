@@ -1,5 +1,5 @@
 import { Grid, GridColumn, GridRow } from 'semantic-ui-react'
-import TradingPairsActivityTable from './pairs-table/TradingPairsActivityTable'
+import TradingPairsStateTable from './pairs-table/TradingPairsStateTable'
 import TradingStateActionPanel from './TradingStateActionPanel'
 
 const TradingState = () => {
@@ -10,7 +10,7 @@ const TradingState = () => {
       </GridRow>
       <GridRow verticalAlign='middle'>
         <GridColumn width={15}>
-          <TradingPairsActivityTable />
+          <TradingPairsStateTable />
         </GridColumn>
       </GridRow>
     </Grid>

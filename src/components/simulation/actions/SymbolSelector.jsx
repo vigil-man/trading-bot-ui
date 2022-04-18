@@ -4,9 +4,8 @@ import { useDispatch, useSelector } from 'react-redux'
 import { selectChosenSymbols, selectSymbols, selectUseAllSymbols } from '../../../redux/symbol/symbol.selectors'
 import { useEffect } from 'react'
 import { selectBotUrl } from '../../../redux/config/config.selectors'
-import { RequestStatus } from '../../../redux/request.statuses'
-import { selectSimulationStatus } from '../../../redux/simulation/simulation.selectors'
 import { Endpoint } from '../../../constant'
+import { useSimulateMutation } from '../../../redux/api/simulation.api'
 
 const SymbolSelector = () => {
   const dispatch = useDispatch()
@@ -14,7 +13,8 @@ const SymbolSelector = () => {
   const symbols = useSelector(selectSymbols)
   const chosenSymbols = useSelector(selectChosenSymbols)
   const useAll = useSelector(selectUseAllSymbols)
-  const simulationStatus = useSelector(selectSimulationStatus)
+  const [, { isLoading }] = useSimulateMutation({ fixedCacheKey: Endpoint.SIMULATION })
+
   const options = symbols.map(symbol => ({ text: symbol, value: symbol }))
 
   useEffect(() => {
@@ -22,8 +22,8 @@ const SymbolSelector = () => {
   }, [dispatch, botUrl])
 
   return (
-    <DimmerDimmable blurring dimmed={simulationStatus === RequestStatus.LOADING}>
-      <Dimmer active={simulationStatus === RequestStatus.LOADING} inverted />
+    <DimmerDimmable blurring dimmed={isLoading}>
+      <Dimmer active={isLoading} inverted />
       <Grid centered padded>
         <GridRow>
           <DimmerDimmable blurring dimmed={useAll}>

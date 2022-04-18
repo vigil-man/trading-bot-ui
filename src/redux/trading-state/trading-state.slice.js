@@ -3,28 +3,28 @@ import ky from 'ky'
 import { RequestStatus } from '../request.statuses'
 
 const INITIAL_STATE = {
-  activitySummary: [],
+  tradingStateSummary: [],
   status: RequestStatus.IDLE,
   error: null
 }
 
-export const fetchActivitySummary = createAsyncThunk('activity/summary', async payload => {
+export const fetchTradingStateSummary = createAsyncThunk('trading-state/summary', async payload => {
   return await ky.get(payload, { timeout: false }).json()
 })
 
-const tradingActivitySlice = createSlice(
+const tradingStateSlice = createSlice(
   {
-    name: 'tradingActivity',
+    name: 'tradingState',
     initialState: INITIAL_STATE,
     extraReducers: {
-      [fetchActivitySummary.pending]: (state) => {
+      [fetchTradingStateSummary.pending]: (state) => {
         state.status = RequestStatus.LOADING
       },
-      [fetchActivitySummary.fulfilled]: (state, { payload }) => {
+      [fetchTradingStateSummary.fulfilled]: (state, { payload }) => {
         state.status = RequestStatus.SUCCESS
-        state.activitySummary = payload
+        state.tradingStateSummary = payload
       },
-      [fetchActivitySummary.rejected]: (state, { payload, error }) => {
+      [fetchTradingStateSummary.rejected]: (state, { payload, error }) => {
         state.status = RequestStatus.ERROR
         state.error = payload || error.message
       }
@@ -32,4 +32,4 @@ const tradingActivitySlice = createSlice(
   }
 )
 
-export default tradingActivitySlice
+export default tradingStateSlice
