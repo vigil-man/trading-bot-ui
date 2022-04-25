@@ -1,26 +1,10 @@
 import { Checkbox, Dimmer, DimmerDimmable, Dropdown, Grid, GridRow } from 'semantic-ui-react'
-import {
-  selectChosenSymbols,
-  selectUseAllSymbols,
-  toggleUseAllSymbols,
-  updateChosenSymbols
-} from '../../../redux/slice/symbol.slice'
-import { useDispatch, useSelector } from 'react-redux'
-import { useEffect } from 'react'
-import { Endpoint } from '../../../constant'
-import { useSimulateMutation } from '../../../redux/api/simulation.api'
-import { useAllSymbolsMutation } from '../../../redux/api/trading-pair.api'
+import { toggleUseAllSymbols, updateChosenSymbols } from '../../redux/slice/symbol.slice'
+import { useDispatch } from 'react-redux'
 
-const SymbolSelector = () => {
+const SymbolSelector = ({ allSymbols, chosenSymbols, useAll, isLoading }) => {
   const dispatch = useDispatch()
-  const chosenSymbols = useSelector(selectChosenSymbols)
-  const useAll = useSelector(selectUseAllSymbols)
-  const [, { isLoading }] = useSimulateMutation({ fixedCacheKey: Endpoint.SIMULATION })
-  const [getAllSymbols, { data = [] }] = useAllSymbolsMutation({ fixedCacheKey: Endpoint.ALL_SYMBOLS })
-
-  const options = data.map(symbol => ({ text: symbol, value: symbol }))
-
-  useEffect(getAllSymbols, [getAllSymbols])
+  const options = allSymbols.map(symbol => ({ text: symbol, value: symbol }))
 
   return (
     <DimmerDimmable blurring dimmed={isLoading}>

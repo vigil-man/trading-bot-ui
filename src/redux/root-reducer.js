@@ -6,6 +6,8 @@ import { historicalDataApi } from './api/historical-data.api'
 import { simulationApi } from './api/simulation.api'
 import { tradingStateApi } from './api/trading-state.api'
 import { tradingPairApi } from './api/trading-pair.api'
+import { configApi } from './api/config.api'
+import { transactionApi } from './api/transaction.api'
 
 export default combineReducers({
   datePicker: datePickerSlice.reducer,
@@ -14,5 +16,7 @@ export default combineReducers({
   [tradingStateApi.reducerPath]: tradingStateApi.reducer,
   [tradingPairApi.reducerPath]: tradingPairApi.reducer,
   [historicalDataApi.reducerPath]: historicalDataApi.reducer,
-  [simulationApi.reducerPath]: simulationApi.reducer
+  [simulationApi.reducerPath]: simulationApi.reducer,
+  [configApi.reducerPath]: configApi.reducer,
+  [transactionApi.reducerPath]: transactionApi.reducer
 })

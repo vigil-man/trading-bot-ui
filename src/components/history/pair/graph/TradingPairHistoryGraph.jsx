@@ -1,9 +1,9 @@
 import { CartesianGrid, Legend, Line, LineChart, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts'
 import IndicatorRecordTooltip from './IndicatorRecordTooltip'
 import { Dimmer, DimmerDimmable, Loader } from 'semantic-ui-react'
-import { getFormattedDate } from '../../../time-utils'
-import { Endpoint } from '../../../constant'
-import { useCandlesMutation } from '../../../redux/api/historical-data.api'
+import { getFormattedDate } from '../../../../time-utils'
+import { Endpoint } from '../../../../constant'
+import { useCandlesMutation } from '../../../../redux/api/historical-data.api'
 
 const TradingPairHistoryGraph = () => {
   const [, { data, isLoading }] = useCandlesMutation({ fixedCacheKey: Endpoint.CANDLES })

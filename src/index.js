@@ -14,6 +14,7 @@ import Header from './components/header/Header'
 import Routes from './Routes'
 import { tradingHistoryApi } from './redux/api/trading-history.api'
 import { historicalDataApi } from './redux/api/historical-data.api'
+import { FLUSH, PAUSE, PERSIST, PURGE, REGISTER, REHYDRATE } from 'redux-persist/es/constants'
 
 const persistConfig = {
   key: 'root',
@@ -27,7 +28,11 @@ const additionalMiddleware = [logger, tradingHistoryApi.middleware]
 
 const store = configureStore({
   reducer: persistedReducer,
-  middleware: getDefaultMiddleware => getDefaultMiddleware().concat(additionalMiddleware),
+  middleware: getDefaultMiddleware => getDefaultMiddleware({
+    serializableCheck: {
+      ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER]
+    }
+  }).concat(additionalMiddleware),
   devTools: process.env.NODE_ENV !== 'production'
 }
 )

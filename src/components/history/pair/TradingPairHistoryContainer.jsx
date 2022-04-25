@@ -1,46 +1,38 @@
 import TradingPairHistoryGraph from './graph/TradingPairHistoryGraph'
 import { Grid, GridColumn, GridRow, Header } from 'semantic-ui-react'
-import DateRangePicker from '../DateRangePicker'
 import TradesSummary from './TradesSummary'
 import TradesTable from './trades-table/TradesTable'
 import { useParams } from 'react-router-dom'
-import GetGraphDataButton from './actions/GetGraphDataButton'
+import TradingPairHistoryActionPanel from './TradingPairHistoryActionPanel'
 
 const TradingPairHistoryContainer = () => {
   const { symbol } = useParams()
   document.title = symbol
   return (
     <Grid centered>
-      <GridRow verticalAlign={'middle'}>
+      <GridRow verticalAlign='middle'>
         <GridColumn width={3}>
           <GridRow>
-            <Header textAlign="center">
+            <Header textAlign='center'>
               {symbol}
             </Header>
           </GridRow>
         </GridColumn>
         <GridColumn width={6}>
-          <Grid centered padded>
-            <GridColumn width={6} verticalAlign={'middle'}>
-              <GetGraphDataButton/>
-            </GridColumn>
-            <GridColumn width={10}>
-              <DateRangePicker/>
-            </GridColumn>
-          </Grid>
+          <TradingPairHistoryActionPanel />
         </GridColumn>
         <GridColumn width={3}>
-          <TradesSummary/>
+          <TradesSummary />
         </GridColumn>
       </GridRow>
       <GridRow>
         <GridColumn width={15}>
-          <TradingPairHistoryGraph/>
+          <TradingPairHistoryGraph />
         </GridColumn>
       </GridRow>
       <GridRow>
         <GridColumn width={15}>
-          <TradesTable/>
+          <TradesTable />
         </GridColumn>
       </GridRow>
     </Grid>

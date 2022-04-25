@@ -5,26 +5,26 @@ export const columns = [
   },
   {
     Header: 'Buy time',
-    accessor: 'buyCreationTimestamp',
+    accessor: 'buyCreationTimestamp'
   },
   {
     Header: 'Sell time',
-    accessor: 'sellCreationTimestamp',
+    accessor: 'sellCreationTimestamp'
   },
   {
     Header: 'Buy price',
-    accessor: 'buyPrice',
+    accessor: 'buyPrice'
   },
   {
     Header: 'Sell price',
-    accessor: 'sellPrice',
+    accessor: 'sellPrice'
   },
   {
     Header: 'Price delta percent',
-    accessor: 'priceDeltaPercent',
+    accessor: 'priceDeltaPercent'
   },
   {
     Header: 'Profit',
-    accessor: 'profit',
+    accessor: 'profit'
   }
 ]

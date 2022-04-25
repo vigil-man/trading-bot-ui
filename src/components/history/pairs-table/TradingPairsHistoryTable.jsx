@@ -1,6 +1,6 @@
 import { useMemo } from 'react'
 import { useHistory } from 'react-router-dom'
-import SortableTable from '../../SortableTable'
+import SortableTable from '../../common/SortableTable'
 import { columns } from './columns'
 import { Dimmer, DimmerDimmable, Loader } from 'semantic-ui-react'
 

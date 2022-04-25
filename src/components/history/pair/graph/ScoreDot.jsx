@@ -1,5 +1,5 @@
 import { Dot } from 'recharts'
-import { NEUTRAL_SCORE, TradingActionColor } from '../../../constant'
+import { NEUTRAL_SCORE, TradingActionColor } from '../../../../constant'
 
 const ScoreDot = (props) => {
   const { payload: { tradingAction } } = props

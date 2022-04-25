@@ -8,32 +8,32 @@ const SortableTable = ({ data, columns, getSortType, selectable, onRowClick }) =
     getTableBodyProps,
     headerGroups,
     rows,
-    prepareRow,
+    prepareRow
   } = tableInstance
 
-  const tableHeader = headerGroups.map(headerGroup =>
-    <TableRow {...headerGroup.getHeaderGroupProps()}>
+  const tableHeader = headerGroups.map((headerGroup, index) =>
+    <TableRow key={index} {...headerGroup.getHeaderGroupProps()}>
       {
-        headerGroup.headers.map(column => {
-            column.sortType = getSortType(column)
-            return (
-              <TableHeaderCell {...column.getHeaderProps(column.getSortByToggleProps())}>
-                {column.render('Header')}
-              </TableHeaderCell>
-            )
-          }
+        headerGroup.headers.map((column, index) => {
+          column.sortType = getSortType(column)
+          return (
+            <TableHeaderCell key={index} {...column.getHeaderProps(column.getSortByToggleProps())}>
+              {column.render('Header')}
+            </TableHeaderCell>
+          )
+        }
         )
       }
     </TableRow>
   )
 
-  const tableBody = rows.map(row => {
+  const tableBody = rows.map((row, index) => {
     prepareRow(row)
     return (
-      <TableRow {...row.getRowProps()} {...(onRowClick && { onClick: () => onRowClick(row) })}>
+      <TableRow key={index} {...row.getRowProps()} {...(onRowClick && { onClick: () => onRowClick(row) })}>
         {
-          row.cells.map(cell =>
-            <TableCell {...cell.getCellProps()}>
+          row.cells.map((cell, index) =>
+            <TableCell key={index} {...cell.getCellProps()}>
               {cell.render('Cell')}
             </TableCell>
           )

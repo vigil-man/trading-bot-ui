@@ -1,13 +1,10 @@
 import { DateTimeInput } from 'semantic-ui-calendar-react'
-import { useDispatch, useSelector } from 'react-redux'
-import { selectFromTime, selectToTime, updateFromTime, updateToTime } from '../redux/slice/date-picker.slice'
-import { DATE_TIME_FORMAT } from '../time-utils'
+import { useDispatch } from 'react-redux'
+import { updateFromTime, updateToTime } from '../../redux/slice/date-picker.slice'
+import { DATE_TIME_FORMAT } from '../../time-utils'
 
-const DateRangePicker = () => {
-  const fromTime = useSelector(selectFromTime)
-  const toTime = useSelector(selectToTime)
+const DateRangePicker = ({ fromTime, toTime }) => {
   const dispatch = useDispatch()
-
   return (
     <>
       <DateTimeInput

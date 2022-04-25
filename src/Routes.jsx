@@ -1,7 +1,7 @@
 import { Route, Switch } from 'react-router-dom'
 import Simulation from './components/simulation/Simulation'
 import EquityGraphs from './components/EquityGraphs'
-import TradingPairHistoryContainer from './components/history/TradingPairHistoryContainer'
+import TradingPairHistoryContainer from './components/history/pair/TradingPairHistoryContainer'
 import React from 'react'
 import TradingHistory from './components/history/TradingHistory'
 import TradingState from './components/state/TradingState'

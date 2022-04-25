@@ -12,11 +12,11 @@ export const simulationApi = createApi({
   },
   endpoints: builder => ({
     simulate: builder.mutation({
-      query: requestBody => (
+      query: payload => (
         {
           method: 'POST',
           url: Endpoint.SIMULATION,
-          body: requestBody
+          body: payload
         })
     })
   })

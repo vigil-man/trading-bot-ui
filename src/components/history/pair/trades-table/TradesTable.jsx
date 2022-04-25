@@ -1,6 +1,6 @@
 import { useLocation } from 'react-router-dom'
 import { useMemo } from 'react'
-import SortableTable from '../../SortableTable'
+import SortableTable from '../../../common/SortableTable'
 import { columns } from './columns'
 
 const TradesTable = () => {
