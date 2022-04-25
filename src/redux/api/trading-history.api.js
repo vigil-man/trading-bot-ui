@@ -7,7 +7,7 @@ export const tradingHistoryApi = createApi({
   baseQuery: fetchBaseQuery({ baseUrl: process.env.REACT_APP_CORE_BASE_URL }),
   extractRehydrationInfo (action, { reducerPath }) {
     if (action.type === REHYDRATE) {
-      return action.payload[reducerPath]
+      return action.payload?.[reducerPath]
     }
   },
   endpoints: builder => ({

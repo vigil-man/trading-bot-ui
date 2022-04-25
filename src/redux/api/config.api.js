@@ -2,8 +2,8 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 import { Endpoint, ReducerPath } from '../../constant'
 import { REHYDRATE } from 'redux-persist/es/constants'
 
-export const simulationApi = createApi({
-  reducerPath: ReducerPath.SIMULATION,
+export const configApi = createApi({
+  reducerPath: ReducerPath.CONFIG,
   baseQuery: fetchBaseQuery({ baseUrl: process.env.REACT_APP_STRATEGY_BASE_URL }),
   extractRehydrationInfo (action, { reducerPath }) {
     if (action.type === REHYDRATE) {
@@ -11,15 +11,10 @@ export const simulationApi = createApi({
     }
   },
   endpoints: builder => ({
-    simulate: builder.mutation({
-      query: requestBody => (
-        {
-          method: 'POST',
-          url: Endpoint.SIMULATION,
-          body: requestBody
-        })
+    toggleTrading: builder.mutation({
+      query: () => Endpoint.TOGGLE_TRADING
     })
   })
 })
 
-export const { useSimulateMutation } = simulationApi
+export const { useToggleTradingMutation } = configApi

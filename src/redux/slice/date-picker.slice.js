@@ -1,8 +1,9 @@
 import { createSlice } from '@reduxjs/toolkit'
+import { createSelector } from 'reselect'
 
 const INITIAL_STATE = {
   fromTime: '',
-  toTime: '',
+  toTime: ''
 }
 const datePickerSlice = createSlice(
   {
@@ -17,6 +18,18 @@ const datePickerSlice = createSlice(
       }
     }
   }
+)
+
+const selectDatePicker = state => state.datePicker
+
+export const selectFromTime = createSelector(
+  [selectDatePicker],
+  datePicker => datePicker.fromTime
+)
+
+export const selectToTime = createSelector(
+  [selectDatePicker],
+  datePicker => datePicker.toTime
 )
 
 export const { updateFromTime, updateToTime } = datePickerSlice.actions

@@ -5,7 +5,7 @@ export const TradingActionColor = {
   SELL: '#bf1c1c'
 }
 
-export const DefaultTradingHistoryState = {
+export const DefaultTradingHistoryResponse = {
   totalProfit: 0,
   avgProfit: 0,
   avgPriceDeltaPercent: 0,
@@ -26,15 +26,21 @@ export const Endpoint = {
   HISTORY: '/history',
   HISTORY_SIMULATION: '/history/simulation',
   STATE: '/state',
-  TRANSACTION_SELL_BOUGHT: '/transaction/sell-bought',
-  PAIR_GET_SYMBOLS: '/pair/all-symbols',
+  SELL_BOUGHT: '/transaction/sell-bought',
+  ALL_SYMBOLS: '/pair/all-symbols',
+  ALL_PAIRS: '/pair/all',
 
-  CONFIG_TOGGLE_TRADING: '/config/toggle-trading',
+  TOGGLE_TRADING: '/config/toggle-trading',
   SIMULATION: '/simulation'
 }
 
 export const ReducerPath = {
   TRADING_HISTORY: 'tradingHistoryApi',
+  TRADING_STATE: 'tradingStateApi',
+  TRADING_PAIR: 'tradingPairApi',
+  SYMBOL: 'symbol',
   HISTORICAL_DATA: 'historicalDataApi',
-  SIMULATION: 'simulationApi'
+  TRANSACTION: 'transactionApi',
+  SIMULATION: 'simulationApi',
+  CONFIG: 'configApi'
 }

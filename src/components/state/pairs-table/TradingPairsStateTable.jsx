@@ -1,23 +1,28 @@
-import { useSelector } from 'react-redux'
 import { useMemo } from 'react'
 import { useHistory } from 'react-router-dom'
 import SortableTable from '../../SortableTable'
 import { columns } from './columns'
-import { selectTradingStatePairs, selectTradingStateStatus } from '../../../redux/trading-state/trading-state.selectors'
 import { Dimmer, DimmerDimmable, Loader } from 'semantic-ui-react'
-import { RequestStatus } from '../../../redux/request.statuses'
 import { useTradingHistoryMutation } from '../../../redux/api/trading-history.api'
 import { Endpoint } from '../../../constant'
+import { useTradingStateMutation } from '../../../redux/api/trading-state.api'
 
 const TradingPairsStateTable = () => {
   const history = useHistory()
-  const tradingStatePairs = useSelector(selectTradingStatePairs)
-  const tradingStateStatus = useSelector(selectTradingStateStatus)
-  const [, { data: tradingPairs = {} }] =
-    useTradingHistoryMutation({ fixedCacheKey: Endpoint.HISTORY })
-
+  const [, { tradingPairStates, isLoading }] = useTradingStateMutation({
+    selectFromResult: ({ data }) => ({
+      tradingPairStates: data?.tradingPairStates ?? []
+    }),
+    fixedCacheKey: Endpoint.STATE
+  })
+  const [, { tradingPairs }] = useTradingHistoryMutation({
+    selectFromResult: ({ data }) => ({
+      tradingPairs: data?.tradingPairs ?? []
+    }),
+    fixedCacheKey: Endpoint.HISTORY
+  })
   const data = useMemo(
-    () => tradingStatePairs?.map(
+    () => tradingPairStates.map(
       tradingPairState => (
         {
           symbol: tradingPairState.symbol,
@@ -27,7 +32,7 @@ const TradingPairsStateTable = () => {
         }
       )
     ),
-    [tradingStatePairs]
+    [tradingPairStates]
   ) || []
 
   const getSortType = () => 'alphanumeric'
@@ -38,8 +43,8 @@ const TradingPairsStateTable = () => {
   })
 
   return (
-    <DimmerDimmable blurring dimmed={tradingStateStatus === RequestStatus.LOADING}>
-      <Dimmer active={tradingStateStatus === RequestStatus.LOADING} inverted>
+    <DimmerDimmable blurring dimmed={isLoading}>
+      <Dimmer active={isLoading} inverted>
         <Loader size='massive' />
       </Dimmer>
       <SortableTable

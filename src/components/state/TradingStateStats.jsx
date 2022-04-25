@@ -1,25 +1,24 @@
 import { Dimmer, DimmerDimmable, Statistic, StatisticGroup } from 'semantic-ui-react'
-import { useSelector } from 'react-redux'
-import { RequestStatus } from '../../redux/request.statuses'
-import { selectTradingStateStatus, selectTradingStateSummary } from '../../redux/trading-state/trading-state.selectors'
+import { useTradingStateMutation } from '../../redux/api/trading-state.api'
+import { Endpoint } from '../../constant'
 
 const TradingStateStats = () => {
-  const tradingStateSummary = useSelector(selectTradingStateSummary)
-  const tradingStateStatus = useSelector(selectTradingStateStatus)
+  const [, { data = {}, isLoading }] = useTradingStateMutation({ fixedCacheKey: Endpoint.STATE })
+
   return (
-    <DimmerDimmable blurring dimmed={tradingStateStatus === RequestStatus.LOADING}>
-      <Dimmer active={tradingStateStatus === RequestStatus.LOADING} inverted />
+    <DimmerDimmable blurring dimmed={isLoading}>
+      <Dimmer active={isLoading} inverted />
       <StatisticGroup size='mini'>
         <Statistic>
-          <Statistic.Value>{tradingStateSummary.timestamp}</Statistic.Value>
+          <Statistic.Value>{data.timestamp}</Statistic.Value>
           <Statistic.Label>Last update</Statistic.Label>
         </Statistic>
         <Statistic>
-          <Statistic.Value>{tradingStateSummary.boughtPairsCount}</Statistic.Value>
+          <Statistic.Value>{data.boughtPairsCount}</Statistic.Value>
           <Statistic.Label>Bought pairs</Statistic.Label>
         </Statistic>
         <Statistic>
-          <Statistic.Value>{tradingStateSummary.activePairsCount}</Statistic.Value>
+          <Statistic.Value>{data.activePairsCount}</Statistic.Value>
           <Statistic.Label>Active pairs</Statistic.Label>
         </Statistic>
       </StatisticGroup>

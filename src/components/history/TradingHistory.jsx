@@ -2,11 +2,11 @@ import { Grid, GridColumn, GridRow } from 'semantic-ui-react'
 import TradingPairsHistoryTable from './pairs-table/TradingPairsHistoryTable'
 import TradingHistoryStatistics from './TradingHistoryStatistics'
 import TradingHistoryActionPanel from './TradingHistoryActionPanel'
-import { DefaultTradingHistoryState, Endpoint } from '../../constant'
+import { DefaultTradingHistoryResponse, Endpoint } from '../../constant'
 import { useTradingHistoryMutation } from '../../redux/api/trading-history.api'
 
 const TradingHistory = () => {
-  const [, { data = DefaultTradingHistoryState, isLoading }] =
+  const [, { data = DefaultTradingHistoryResponse, isLoading }] =
     useTradingHistoryMutation({ fixedCacheKey: Endpoint.HISTORY })
 
   return (

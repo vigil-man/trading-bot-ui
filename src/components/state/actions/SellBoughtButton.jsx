@@ -1,18 +1,14 @@
-import { useSelector } from 'react-redux'
 import { Button } from 'semantic-ui-react'
-import { selectBotUrl } from '../../../redux/config/config.selectors'
-import ky from 'ky'
 import { Endpoint } from '../../../constant'
+import { useSellBoughtMutation } from '../../../redux/api/transaction.api'
 
 const SellBoughtButton = () => {
-  const botUrl = useSelector(selectBotUrl)
+  const [sellBought] = useSellBoughtMutation({ fixedCacheKey: Endpoint.SELL_BOUGHT })
 
   return (
     <Button
       color='red'
-      onClick={() => ky.get(
-        `${botUrl}${process.env.REACT_APP_CORE_PORT}${Endpoint.TRANSACTION_SELL_BOUGHT}`
-      )}
+      onClick={sellBought}
     >
       Sell bought
     </Button>
