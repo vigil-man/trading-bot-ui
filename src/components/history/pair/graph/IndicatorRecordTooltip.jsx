@@ -2,9 +2,10 @@ import { DefaultTooltipContent } from 'recharts/lib/component/DefaultTooltipCont
 
 const IndicatorRecordTooltip = props => {
   const getOutputsView = outputs =>
-    <dl>{outputs.map(
-      output => <dd key={output.name}>{output.name}: {output.value}</dd>
-    )}
+    <dl>
+      {outputs.map(
+        output => <dd key={output.name}>{output.name}: {output.value}</dd>
+      )}
     </dl>
 
   if (props.active && props.payload && props.payload.length) {

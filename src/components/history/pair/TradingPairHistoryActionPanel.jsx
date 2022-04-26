@@ -4,15 +4,10 @@ import { getEpochMilli } from '../../../time-utils'
 import { useSelector } from 'react-redux'
 import { selectFromTime, selectToTime } from '../../../redux/slice/date-picker.slice'
 import ActionButton from '../../common/ActionButton'
-import { Endpoint } from '../../../constant'
-import { useParams } from 'react-router-dom'
-import { useCandlesMutation } from '../../../redux/api/historical-data.api'
 
-const TradingPairHistoryActionPanel = () => {
+const TradingPairHistoryActionPanel = ({ symbol, getCandles, getStrategyRecords, isLoading }) => {
   const fromTime = useSelector(selectFromTime)
   const toTime = useSelector(selectToTime)
-  const { symbol } = useParams()
-  const [getCandles, { isLoading }] = useCandlesMutation({ fixedCacheKey: Endpoint.CANDLES })
   const payload = {
     symbol: symbol,
     fromTimestamp: getEpochMilli(fromTime),
@@ -21,15 +16,23 @@ const TradingPairHistoryActionPanel = () => {
   }
   return (
     <Grid centered padded>
-      <GridColumn width={6} verticalAlign='middle'>
+      <GridColumn width={4} verticalAlign='middle'>
         <ActionButton
           clickHandler={getCandles}
           payload={payload}
           isLoading={isLoading}
-          label='Get data'
+          label='Get candles'
         />
       </GridColumn>
-      <GridColumn width={10}>
+      <GridColumn width={4} verticalAlign='middle'>
+        <ActionButton
+          clickHandler={getStrategyRecords}
+          payload={payload}
+          isLoading={isLoading}
+          label='Get strategy records'
+        />
+      </GridColumn>
+      <GridColumn width={8}>
         <DateRangePicker fromTime={fromTime} toTime={toTime} />
       </GridColumn>
     </Grid>

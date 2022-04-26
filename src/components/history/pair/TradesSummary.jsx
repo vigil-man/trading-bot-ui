@@ -8,11 +8,11 @@ const TradesSummary = () => {
       <TableBody>
         <TableRow>
           <TableCell>Total Profit</TableCell>
-          <TableCell>{state?.totalProfit || 0}</TableCell>
+          <TableCell>{state?.totalProfit ?? 0}</TableCell>
         </TableRow>
         <TableRow>
           <TableCell>Trades count</TableCell>
-          <TableCell>{state?.tradesCount || 0}</TableCell>
+          <TableCell>{state?.tradesCount ?? 0}</TableCell>
         </TableRow>
       </TableBody>
     </Table>

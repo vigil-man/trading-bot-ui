@@ -31,7 +31,8 @@ export const Endpoint = {
   ALL_PAIRS: '/pair/all',
 
   TOGGLE_TRADING: '/config/toggle-trading',
-  SIMULATION: '/simulation'
+  SIMULATION: '/simulation',
+  STRATEGY_RECORDS: '/cache/strategy'
 }
 
 export const ReducerPath = {
@@ -41,6 +42,7 @@ export const ReducerPath = {
   SYMBOL: 'symbol',
   HISTORICAL_DATA: 'historicalDataApi',
   TRANSACTION: 'transactionApi',
+  TRADING_CACHE: 'tradingCacheApi',
   SIMULATION: 'simulationApi',
   CONFIG: 'configApi'
 }
