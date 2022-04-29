@@ -7,14 +7,20 @@ import TradingPairHistoryActionPanel from './TradingPairHistoryActionPanel'
 import { useCandlesMutation } from '../../../redux/api/historical-data.api'
 import { useStrategyRecordsMutation } from '../../../redux/api/trading-cache.api'
 import { Endpoint } from '../../../constant'
+import { mergeSortedArrays } from '../../../utils/array-utils/array-utils'
+import { useMemo } from 'react'
 
 const TradingPairHistoryContainer = () => {
   const { symbol } = useParams()
-  const [getCandles, { data: candlesData = [], isLoading: isCandlesLoading }] =
-    useCandlesMutation({ fixedCacheKey: Endpoint.CANDLES })
-  const [getStrategyRecords, { data: strategyRecordsData = [], isLoading: isStrategyRecordsLoading }] =
-    useStrategyRecordsMutation({ fixedCacheKey: Endpoint.STRATEGY_RECORDS })
   document.title = symbol
+  const [, { data: candlesData = [], isLoading: isCandlesLoading }] =
+    useCandlesMutation({ fixedCacheKey: Endpoint.CANDLES })
+  const [, { data: strategyRecordsData = [], isLoading: isStrategyRecordsLoading }] =
+    useStrategyRecordsMutation({ fixedCacheKey: Endpoint.STRATEGY_RECORDS })
+  const mergedData = useMemo(
+    () => mergeSortedArrays(candlesData, strategyRecordsData, 'closeTimestamp', 'timestamp'),
+    [candlesData, strategyRecordsData]
+  )
   return (
     <Grid centered>
       <GridRow verticalAlign='middle'>
@@ -28,9 +34,6 @@ const TradingPairHistoryContainer = () => {
         <GridColumn width={10}>
           <TradingPairHistoryActionPanel
             symbol={symbol}
-            getCandles={getCandles}
-            getStrategyRecords={getStrategyRecords}
-            isLoading={isCandlesLoading || isStrategyRecordsLoading}
           />
         </GridColumn>
         <GridColumn width={3}>
@@ -40,8 +43,8 @@ const TradingPairHistoryContainer = () => {
       <GridRow>
         <GridColumn width={15}>
           <TradingPairHistoryGraph
-            candles={candlesData}
-            strategyRecords={strategyRecordsData}
+            data={mergedData}
+            isLoading={isCandlesLoading || isStrategyRecordsLoading}
           />
         </GridColumn>
       </GridRow>

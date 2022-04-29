@@ -1,16 +1,15 @@
 import { CartesianGrid, Line, LineChart, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts'
 import IndicatorRecordTooltip from './IndicatorRecordTooltip'
 import { Dimmer, DimmerDimmable, Loader } from 'semantic-ui-react'
-import { getFormattedDate } from '../../../../time-utils'
+import { getFormattedDate } from '../../../../utils/time-utils'
 import ScoreDot from './ScoreDot'
 
-const TradingPairHistoryGraph = ({ candles, strategyRecords, isLoading }) => {
-  const firstClosePrice = candles[0]?.closePrice
-  const firstValue = strategyRecords[0]?.value
+const TradingPairHistoryGraph = ({ data, isLoading }) => {
+  const firstClosePrice = data[0]?.closePrice
   const firstPriceLog = firstClosePrice ? Math.log(firstClosePrice) : 0
-  const firstValueLog = firstValue ? Math.log(firstValue) : 0
-  const getPriceLogDelta = data => Math.log(data.closePrice) - firstPriceLog
-  const getValueLogDelta = data => Math.log(data.value) - firstValueLog
+  const getPriceLogDelta = data =>
+    data.closePrice ? Math.log(data.closePrice) - firstPriceLog : null
+  const getTimestamp = data => data.closeTimestamp || data.timestamp
 
   return (
     <DimmerDimmable>
@@ -20,26 +19,23 @@ const TradingPairHistoryGraph = ({ candles, strategyRecords, isLoading }) => {
       <ResponsiveContainer width='100%' height={400}>
         <LineChart>
           <Tooltip
+            filterNull={false}
             content={<IndicatorRecordTooltip />}
             labelFormatter={epochMilli => getFormattedDate(epochMilli)}
           />
-          {/* <Legend /> */}
           <CartesianGrid strokeDasharray='3 3' />
           <XAxis
-            dataKey='closeTimestamp'
+            dataKey={getTimestamp}
             tickFormatter={closeTimestamp => getFormattedDate(closeTimestamp)}
           />
-          <YAxis yAxisId='closePrice' />
+          <YAxis />
           <Line
-            data={candles}
-            yAxisId='closePrice'
-            dataKey={getPriceLogDelta} type='monotone' stroke='#d3be55' dot={null}
-          />
-          <YAxis yAxisId='indicator' orientation='right' />
-          <Line
-            data={strategyRecords}
-            yAxisId='indicator'
-            dataKey={getValueLogDelta} type='monotone' stroke='#d3be55' dot={<ScoreDot />}
+            data={data}
+            dataKey={getPriceLogDelta}
+            type='monotone'
+            stroke='#d3be55'
+            connectNulls
+            dot={<ScoreDot />}
           />
         </LineChart>
       </ResponsiveContainer>

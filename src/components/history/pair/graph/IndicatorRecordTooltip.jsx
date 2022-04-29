@@ -8,31 +8,37 @@ const IndicatorRecordTooltip = props => {
       )}
     </dl>
 
+  const getStrategyPayload = ({ strategyName, tradingAction, value, outputs }) =>
+    [
+      {
+        name: 'Indicator name',
+        value: strategyName
+      },
+      {
+        name: 'Action',
+        value: tradingAction
+      },
+      {
+        name: 'Value',
+        value: value
+      },
+      {
+        name: 'Outputs',
+        value: getOutputsView(outputs)
+      },
+      ...props.payload
+    ]
+
   if (props.active && props.payload && props.payload.length) {
     const payload = props.payload[0].payload
-    const newPayload = payload.indicatorName
-      ? [
-          {
-            name: 'Indicator name',
-            value: payload.indicatorName
-          },
-          {
-            name: 'Action',
-            value: payload.tradingAction
-          },
-          {
-            name: 'Outputs',
-            value: getOutputsView(payload.outputs)
-          },
-          ...props.payload
-        ]
+    const newPayload = payload.strategyName
+      ? getStrategyPayload(payload)
       : [...props.payload]
-
-    if (payload.price) {
+    if (payload.closePrice) {
       newPayload.push(
         {
           name: 'Price',
-          value: payload.price
+          value: payload.closePrice
         }
       )
     }

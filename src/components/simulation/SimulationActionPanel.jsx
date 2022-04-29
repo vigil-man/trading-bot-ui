@@ -1,4 +1,4 @@
-import { Grid, GridColumn } from 'semantic-ui-react'
+import { Button, Grid, GridColumn } from 'semantic-ui-react'
 import SymbolSelector from './SymbolSelector'
 import DateRangePicker from '../common/DateRangePicker'
 import { useSelector } from 'react-redux'
@@ -6,8 +6,7 @@ import { selectFromTime, selectToTime } from '../../redux/slice/date-picker.slic
 import { selectChosenSymbols, selectUseAllSymbols } from '../../redux/slice/symbol.slice'
 import { useAllSymbolsMutation } from '../../redux/api/trading-pair.api'
 import { Endpoint } from '../../constant'
-import ActionButton from '../common/ActionButton'
-import { getEpochMilli } from '../../time-utils'
+import { getEpochMilli } from '../../utils/time-utils'
 import { useSimulateMutation } from '../../redux/api/simulation.api'
 import { useEffect } from 'react'
 
@@ -39,11 +38,11 @@ const SimulationActionPanel = () => {
       <GridColumn width={9}>
         <Grid centered>
           <GridColumn width={4} verticalAlign='middle'>
-            <ActionButton
-              clickHandler={executeSimulation}
-              payload={payload}
-              isLoading={isLoading}
-              label='Execute Simulation'
+            <Button
+              primary
+              onClick={() => executeSimulation(payload)}
+              loading={isLoading}
+              content='Execute Simulation'
             />
           </GridColumn>
           <GridColumn width={8}>
