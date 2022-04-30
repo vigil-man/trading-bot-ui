@@ -2,35 +2,39 @@ import { CartesianGrid, Legend, Line, LineChart, ResponsiveContainer, Tooltip, X
 import { Container, Header } from 'semantic-ui-react'
 import { useSimulationHistoryMutation, useTradingHistoryMutation } from '../redux/api/trading-history.api'
 import { Endpoint } from '../constant'
+import { getFormattedDate } from '../utils/time-utils'
 
 const EquityGraphs = () => {
-  const [, { simulationPairs }] =
-    useSimulationHistoryMutation(
-      {
-        selectFromResult: ({ data }) => ({
-          simulationPairs: data.tradingPairs
-        }),
-        fixedCacheKey: Endpoint.HISTORY_SIMULATION
-      })
-  const [, { data: tradingPairs }] = useTradingHistoryMutation({ fixedCacheKey: Endpoint.HISTORY })
+  const [, { simulationPairs }] = useSimulationHistoryMutation({
+    selectFromResult: ({ data }) => ({
+      simulationPairs: data?.tradingPairs ?? []
+    }),
+    fixedCacheKey: Endpoint.HISTORY_SIMULATION
+  })
+  const [, { tradingPairs }] = useTradingHistoryMutation({
+    selectFromResult: ({ data }) => ({
+      tradingPairs: data?.tradingPairs ?? []
+    }),
+    fixedCacheKey: Endpoint.HISTORY
+  })
 
   const profitDataTimeComparator = (first, second) => first.sellTime - second.sellTime
 
-  const profitCumulativeSum = (profitDataSummed => currentProfitData => ({
-    sellTime: currentProfitData.sellTime,
+  // eslint-disable-next-line no-return-assign
+  const profitCumulativeSum = profitDataSummed => currentProfitData => ({
+    sellTime: getFormattedDate(currentProfitData.sellTime),
     profit: profitDataSummed.profit += currentProfitData.profit
-  }))({ sellTime: 0, profit: 0 })
+  })({ sellTime: 0, profit: 0 })
 
-  const getProfitDataArray = ([, data]) => (
+  const getProfitDataArray = ([, data]) =>
     data.trades
-      .filter(trade => trade.sellCreationTimestamp !== null)
+      .filter(trade => trade.sellCreationTimestamp !== 0)
       .map(trade => (
         {
           sellTime: trade.sellCreationTimestamp,
           profit: trade.profit
         }
       ))
-  )
 
   const equityGraphData = (pairs) => (
     Object.entries(pairs)

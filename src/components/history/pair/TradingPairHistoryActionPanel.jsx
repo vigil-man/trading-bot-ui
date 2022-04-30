@@ -34,7 +34,7 @@ const TradingPairHistoryActionPanel = ({ symbol }) => {
     resetCandles()
     resetRecords()
   }
-
+  // eslint-disable-next-line
   useEffect(() => resetGraphData, [])
 
   return (

@@ -1,6 +1,7 @@
 import { Dimmer, DimmerDimmable, Statistic, StatisticGroup } from 'semantic-ui-react'
 import { useTradingStateMutation } from '../../redux/api/trading-state.api'
 import { Endpoint } from '../../constant'
+import { getFormattedDate } from '../../utils/time-utils'
 
 const TradingStateStats = () => {
   const [, { data = {}, isLoading }] = useTradingStateMutation({ fixedCacheKey: Endpoint.STATE })
@@ -10,7 +11,7 @@ const TradingStateStats = () => {
       <Dimmer active={isLoading} inverted />
       <StatisticGroup size='mini'>
         <Statistic>
-          <Statistic.Value>{data.timestamp}</Statistic.Value>
+          <Statistic.Value>{getFormattedDate(data.timestamp)}</Statistic.Value>
           <Statistic.Label>Last update</Statistic.Label>
         </Statistic>
         <Statistic>
