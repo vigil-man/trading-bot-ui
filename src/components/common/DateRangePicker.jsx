@@ -8,6 +8,7 @@ const DateRangePicker = ({ fromTime, toTime }) => {
   return (
     <>
       <DateTimeInput
+        fluid
         name='dateTimeFrom'
         placeholder='Date Time From'
         value={fromTime}
@@ -18,6 +19,7 @@ const DateRangePicker = ({ fromTime, toTime }) => {
         onChange={(event, { value }) => dispatch(updateFromTime(value))}
       />
       <DateTimeInput
+        fluid
         name='dateTimeTo'
         placeholder='Date Time To'
         value={toTime}

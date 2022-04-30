@@ -21,6 +21,7 @@ const TradingPairHistoryContainer = () => {
     () => mergeSortedArrays(candlesData, strategyRecordsData, 'closeTimestamp', 'timestamp'),
     [candlesData, strategyRecordsData]
   )
+
   return (
     <Grid centered>
       <GridRow verticalAlign='middle'>
@@ -31,7 +32,7 @@ const TradingPairHistoryContainer = () => {
             </Header>
           </GridRow>
         </GridColumn>
-        <GridColumn width={10}>
+        <GridColumn width={7}>
           <TradingPairHistoryActionPanel
             symbol={symbol}
           />

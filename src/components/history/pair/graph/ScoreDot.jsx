@@ -4,7 +4,7 @@ import { NEUTRAL_SCORE, TradingActionColor } from '../../../../constant'
 const ScoreDot = (props) => {
   const { payload: { tradingAction } } = props
 
-  const getCustomDot = (tradingAction) =>
+  const getCustomDot = tradingAction =>
     <Dot
       {...props}
       strokeWidth={5} stroke={TradingActionColor[tradingAction]} r={1}

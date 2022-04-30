@@ -24,7 +24,7 @@ const TradingHistoryActionPanel = () => {
           content='Get History'
         />
       </GridColumn>
-      <GridColumn width={3}>
+      <GridColumn width={4}>
         <DateRangePicker fromTime={fromTime} toTime={toTime} />
       </GridColumn>
     </Grid>
