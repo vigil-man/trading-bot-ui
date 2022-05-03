@@ -12,7 +12,10 @@ export const configApi = createApi({
   },
   endpoints: builder => ({
     toggleTrading: builder.mutation({
-      query: () => Endpoint.TOGGLE_TRADING
+      query: () => ({
+        method: 'PUT',
+        url: Endpoint.TOGGLE_TRADING
+      })
     })
   })
 })

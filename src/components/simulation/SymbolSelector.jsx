@@ -28,7 +28,7 @@ const SymbolSelector = ({ allSymbols, chosenSymbols, useAll, isLoading }) => {
           <Checkbox
             toggle
             label='Use all symbols'
-            value={useAll}
+            checked={useAll}
             onChange={() => dispatch(toggleUseAllSymbols())}
           />
         </GridRow>

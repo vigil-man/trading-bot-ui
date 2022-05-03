@@ -4,11 +4,18 @@ import { useTradingStateMutation } from '../../redux/api/trading-state.api'
 import { Endpoint } from '../../constant'
 import { useSellBoughtMutation } from '../../redux/api/transaction.api'
 import { useToggleTradingMutation } from '../../redux/api/config.api'
+import { useState } from 'react'
 
 const TradingStateActionPanel = () => {
   const [getTradingState, { isLoading: tradingStateLoading }] = useTradingStateMutation({ fixedCacheKey: Endpoint.STATE })
   const [sellBought, { isLoading: sellBoughtLoading }] = useSellBoughtMutation({ fixedCacheKey: Endpoint.SELL_BOUGHT })
   const [toggleTrading, { data, isLoading: toggleTradingLoading }] = useToggleTradingMutation({ fixedCacheKey: Endpoint.TOGGLE_TRADING })
+  const [previousValue, setPreviousValue] = useState(false)
+
+  const handleToggle = (e, { checked }) => {
+    setPreviousValue(!checked)
+    toggleTrading()
+  }
 
   return (
     <Grid centered padded verticalAlign='middle'>
@@ -28,8 +35,8 @@ const TradingStateActionPanel = () => {
           <Checkbox
             toggle
             label='Toggle trading'
-            value={data}
-            onChange={toggleTrading}
+            checked={data ?? previousValue}
+            onChange={handleToggle}
           />
         </DimmerDimmable>
       </GridColumn>
