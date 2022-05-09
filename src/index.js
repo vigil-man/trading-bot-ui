@@ -4,7 +4,6 @@ import reportWebVitals from './reportWebVitals'
 import { configureStore } from '@reduxjs/toolkit'
 import { Provider } from 'react-redux'
 import rootReducer from './redux/root-reducer'
-import logger from 'redux-logger'
 import 'semantic-ui-css/semantic.min.css'
 import { BrowserRouter } from 'react-router-dom'
 import { persistReducer, persistStore } from 'redux-persist'
@@ -34,7 +33,6 @@ const persistConfig = {
 const persistedReducer = persistReducer(persistConfig, rootReducer)
 
 const additionalMiddleware = [
-  logger,
   tradingHistoryApi.middleware,
   tradingStateApi.middleware,
   tradingPairApi.middleware,
