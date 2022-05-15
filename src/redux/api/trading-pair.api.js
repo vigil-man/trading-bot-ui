@@ -14,10 +14,10 @@ export const tradingPairApi = createApi({
     allPairs: builder.mutation({
       query: () => Endpoint.ALL_PAIRS
     }),
-    allSymbols: builder.mutation({
+    allSymbols: builder.query({
       query: () => Endpoint.ALL_SYMBOLS
     })
   })
 })
 
-export const { useAllSymbolsMutation } = tradingPairApi
+export const { useAllSymbolsQuery } = tradingPairApi
