@@ -3,19 +3,13 @@ import TradingStateStats from './TradingStateStats'
 import { useTradingStateMutation } from '../../redux/api/trading-state.api'
 import { Endpoint } from '../../constant'
 import { useSellBoughtMutation } from '../../redux/api/transaction.api'
-import { useToggleTradingMutation } from '../../redux/api/config.api'
-import { useState } from 'react'
+import { useToggleTradingMutation, useTradingEnabledQuery } from '../../redux/api/config.api'
 
 const TradingStateActionPanel = () => {
   const [getTradingState, { isLoading: tradingStateLoading }] = useTradingStateMutation({ fixedCacheKey: Endpoint.STATE })
   const [sellBought, { isLoading: sellBoughtLoading }] = useSellBoughtMutation({ fixedCacheKey: Endpoint.SELL_BOUGHT })
-  const [toggleTrading, { data, isLoading: toggleTradingLoading }] = useToggleTradingMutation({ fixedCacheKey: Endpoint.TOGGLE_TRADING })
-  const [previousValue, setPreviousValue] = useState(false)
-
-  const handleToggle = (e, { checked }) => {
-    setPreviousValue(!checked)
-    toggleTrading()
-  }
+  const [toggleTrading, { data: tradingEnabledMutation, isLoading: tradingEnabledLoading }] = useToggleTradingMutation()
+  const { data: tradingEnabledQuery } = useTradingEnabledQuery(undefined, { refetchOnMountOrArgChange: true })
 
   return (
     <Grid centered padded verticalAlign='middle'>
@@ -31,9 +25,9 @@ const TradingStateActionPanel = () => {
             as={Button}
             toggle
             label='Toggle trading'
-            checked={data ?? previousValue}
-            onChange={handleToggle}
-            loading={toggleTradingLoading}
+            checked={tradingEnabledMutation ?? tradingEnabledQuery}
+            onChange={toggleTrading}
+            loading={tradingEnabledLoading}
           />
           <Button
             primary

@@ -16,8 +16,11 @@ export const configApi = createApi({
         method: 'PUT',
         url: Endpoint.TOGGLE_TRADING
       })
+    }),
+    tradingEnabled: builder.query({
+      query: () => Endpoint.TRADING_ENABLED
     })
   })
 })
 
-export const { useToggleTradingMutation } = configApi
+export const { useToggleTradingMutation, useTradingEnabledQuery } = configApi

@@ -31,6 +31,7 @@ export const Endpoint = {
   ALL_PAIRS: '/pair/all',
 
   TOGGLE_TRADING: '/config/toggle-trading',
+  TRADING_ENABLED: '/config/trading-enabled',
   SIMULATION: '/simulation',
   STRATEGY_RECORDS: '/cache/strategy'
 }
