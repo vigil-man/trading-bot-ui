@@ -1,4 +1,4 @@
-import { Button, Checkbox, Dimmer, DimmerDimmable, Grid, GridColumn, Loader } from 'semantic-ui-react'
+import { Button, ButtonGroup, Checkbox, Grid, GridColumn } from 'semantic-ui-react'
 import TradingStateStats from './TradingStateStats'
 import { useTradingStateMutation } from '../../redux/api/trading-state.api'
 import { Endpoint } from '../../constant'
@@ -19,36 +19,31 @@ const TradingStateActionPanel = () => {
 
   return (
     <Grid centered padded verticalAlign='middle'>
-      <GridColumn width={3}>
-        <Button
-          primary
-          onClick={sellBought}
-          loading={sellBoughtLoading}
-          content='Sell bought'
-        />
-      </GridColumn>
-      <GridColumn width={3}>
-        <DimmerDimmable blurring dimmed={toggleTradingLoading}>
-          <Dimmer active={toggleTradingLoading} inverted>
-            <Loader size='mini' />
-          </Dimmer>
+      <GridColumn width={8} textAlign='center'>
+        <ButtonGroup vertical>
+          <Button
+            primary
+            onClick={sellBought}
+            loading={sellBoughtLoading}
+            content='Sell bought'
+          />
           <Checkbox
+            as={Button}
             toggle
             label='Toggle trading'
             checked={data ?? previousValue}
             onChange={handleToggle}
+            loading={toggleTradingLoading}
           />
-        </DimmerDimmable>
+          <Button
+            primary
+            onClick={getTradingState}
+            loading={tradingStateLoading}
+            content='Fetch trading state'
+          />
+        </ButtonGroup>
       </GridColumn>
-      <GridColumn width={4}>
-        <Button
-          primary
-          onClick={getTradingState}
-          loading={tradingStateLoading}
-          content='Fetch trading state'
-        />
-      </GridColumn>
-      <GridColumn width={6}>
+      <GridColumn width={8}>
         <TradingStateStats />
       </GridColumn>
     </Grid>
