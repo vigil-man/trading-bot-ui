@@ -4,7 +4,7 @@ import { useSimulationHistoryMutation, useTradingHistoryMutation } from '../redu
 import { Endpoint } from '../constant'
 import { getFormattedDate } from '../utils/time-utils'
 
-const EquityGraphs = () => {
+const ProfitGraphs = () => {
   const [, { simulationPairs }] = useSimulationHistoryMutation({
     selectFromResult: ({ data }) => ({
       simulationPairs: data?.tradingPairs ?? []
@@ -21,10 +21,10 @@ const EquityGraphs = () => {
   const profitDataTimeComparator = (first, second) => first.sellTime - second.sellTime
 
   // eslint-disable-next-line no-return-assign
-  const profitCumulativeSum = profitDataSummed => currentProfitData => ({
+  const profitCumulativeSum = (profitDataSummed => currentProfitData => ({
     sellTime: getFormattedDate(currentProfitData.sellTime),
     profit: profitDataSummed.profit += currentProfitData.profit
-  })({ sellTime: 0, profit: 0 })
+  }))({ sellTime: 0, profit: 0 })
 
   const getProfitDataArray = ([, data]) =>
     data.trades
@@ -36,7 +36,7 @@ const EquityGraphs = () => {
         }
       ))
 
-  const equityGraphData = (pairs) => (
+  const profitGraphData = pairs => (
     Object.entries(pairs)
       .flatMap(getProfitDataArray)
       .sort(profitDataTimeComparator)
@@ -47,7 +47,7 @@ const EquityGraphs = () => {
     <Container textAlign='center' fluid>
       <Header attached='bottom'>Real equity</Header>
       <ResponsiveContainer width='100%' height={400}>
-        <LineChart data={equityGraphData(tradingPairs)}>
+        <LineChart data={profitGraphData(tradingPairs)}>
           <Tooltip />
           <Legend />
           <CartesianGrid strokeDasharray='3 3' />
@@ -58,7 +58,7 @@ const EquityGraphs = () => {
       </ResponsiveContainer>
       <Header attached='bottom'>Simulation equity</Header>
       <ResponsiveContainer width='100%' height={400}>
-        <LineChart data={equityGraphData(simulationPairs)}>
+        <LineChart data={profitGraphData(simulationPairs)}>
           <Tooltip />
           <Legend />
           <CartesianGrid strokeDasharray='3 3' />
@@ -71,4 +71,4 @@ const EquityGraphs = () => {
   )
 }
 
-export default EquityGraphs
+export default ProfitGraphs
