@@ -1,9 +1,8 @@
 import { Dimmer, DimmerDimmable, Grid, GridColumn, GridRow, Statistic, StatisticGroup } from 'semantic-ui-react'
-import { RequestStatus } from '../../redux/request.statuses'
 
-const TradingHistoryStatistics = ({ history, status }) => (
-  <DimmerDimmable blurring dimmed={status === RequestStatus.LOADING}>
-    <Dimmer active={status === RequestStatus.LOADING} inverted />
+const TradingHistoryStatistics = ({ history, isLoading }) => (
+  <DimmerDimmable blurring dimmed={isLoading}>
+    <Dimmer active={isLoading} inverted />
     <Grid centered>
       <GridRow>
         <GridColumn width={7}>

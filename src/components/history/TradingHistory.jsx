@@ -2,12 +2,13 @@ import { Grid, GridColumn, GridRow } from 'semantic-ui-react'
 import TradingPairsHistoryTable from './pairs-table/TradingPairsHistoryTable'
 import TradingHistoryStatistics from './TradingHistoryStatistics'
 import TradingHistoryActionPanel from './TradingHistoryActionPanel'
-import { useSelector } from 'react-redux'
-import { selectTradingHistory, selectTradingHistoryStatus } from '../../redux/trading-history/trading-history.selectors'
+import { DefaultTradingHistoryResponse, Endpoint } from '../../constant'
+import { useTradingHistoryMutation } from '../../redux/api/trading-history.api'
 
 const TradingHistory = () => {
-  const tradingHistory = useSelector(selectTradingHistory)
-  const tradingHistoryStatus = useSelector(selectTradingHistoryStatus)
+  const [, { data = DefaultTradingHistoryResponse, isLoading }] =
+    useTradingHistoryMutation({ fixedCacheKey: Endpoint.HISTORY })
+
   return (
     <Grid centered>
       <GridRow>
@@ -17,12 +18,12 @@ const TradingHistory = () => {
       </GridRow>
       <GridRow>
         <GridColumn>
-          <TradingHistoryStatistics history={tradingHistory} status={tradingHistoryStatus} />
+          <TradingHistoryStatistics history={data} isLoading={isLoading} />
         </GridColumn>
       </GridRow>
       <GridRow>
         <GridColumn width={15}>
-          <TradingPairsHistoryTable tradingPairs={tradingHistory.tradingPairs} status={tradingHistoryStatus} />
+          <TradingPairsHistoryTable tradingPairs={data.tradingPairs} isLoading={isLoading} />
         </GridColumn>
       </GridRow>
     </Grid>
