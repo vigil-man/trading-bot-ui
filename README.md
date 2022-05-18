@@ -23,5 +23,5 @@ Create .env file with variables described in the section below and then run
 
 # Environment Variables
 
-- REACT_APP_CORE_PORT - port of core app
-- REACT_APP_STRATEGY_PORT - port of strategy app
+- REACT_APP_CORE_BASE_URL - core app URL
+- REACT_APP_STRATEGY_BASE_URL - strategy app URL
