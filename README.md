@@ -14,7 +14,6 @@
     - Ability to choose pairs for simulation
     - Ability to start and view simulation results in form of trading history
 - [Trading profit graph](https://github.com/vigil-man/trading-bot-ui/wiki/Profit)
-- Multiple trading bot instances support
 
 # Usage
 
