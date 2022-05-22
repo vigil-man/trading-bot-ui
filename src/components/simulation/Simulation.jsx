@@ -2,11 +2,11 @@ import SimulationActionPanel from './SimulationActionPanel'
 import { Grid, GridColumn, GridRow } from 'semantic-ui-react'
 import TradingHistoryStatistics from '../history/TradingHistoryStatistics'
 import TradingPairsHistoryTable from '../history/pairs-table/TradingPairsHistoryTable'
-import { useSimulationHistoryMutation } from '../../redux/api/trading-history.api'
 import { DefaultTradingHistoryResponse, Endpoint } from '../../constant'
+import { useSimulateMutation } from '../../redux/api/simulation.api'
 
 const Simulation = () => {
-  const [, { data = DefaultTradingHistoryResponse, isLoading }] = useSimulationHistoryMutation({ fixedCacheKey: Endpoint.SIMULATION })
+  const [, { data = DefaultTradingHistoryResponse, isLoading }] = useSimulateMutation({ fixedCacheKey: Endpoint.SIMULATION })
   return (
     <Grid centered>
       <GridRow>

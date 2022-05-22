@@ -4,7 +4,7 @@ import { REHYDRATE } from 'redux-persist/es/constants'
 
 export const simulationApi = createApi({
   reducerPath: ReducerPath.SIMULATION,
-  baseQuery: fetchBaseQuery({ baseUrl: process.env.REACT_APP_STRATEGY_BASE_URL }),
+  baseQuery: fetchBaseQuery({ baseUrl: process.env.REACT_APP_TRADING_BOT_URL }),
   extractRehydrationInfo (action, { reducerPath }) {
     if (action.type === REHYDRATE) {
       return action.payload?.[reducerPath]

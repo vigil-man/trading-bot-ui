@@ -1,15 +1,16 @@
 import { CartesianGrid, Legend, Line, LineChart, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts'
 import { Container, Header } from 'semantic-ui-react'
-import { useSimulationHistoryMutation, useTradingHistoryMutation } from '../redux/api/trading-history.api'
+import { useTradingHistoryMutation } from '../redux/api/trading-history.api'
 import { Endpoint } from '../constant'
-import { getFormattedDate } from '../utils/time-utils'
+import { getFormattedTimestamp } from '../utils/time-utils'
+import { useSimulateMutation } from '../redux/api/simulation.api'
 
 const ProfitGraphs = () => {
-  const [, { simulationPairs }] = useSimulationHistoryMutation({
+  const [, { simulationPairs }] = useSimulateMutation({
     selectFromResult: ({ data }) => ({
       simulationPairs: data?.tradingPairs ?? []
     }),
-    fixedCacheKey: Endpoint.HISTORY_SIMULATION
+    fixedCacheKey: Endpoint.SIMULATION
   })
   const [, { tradingPairs }] = useTradingHistoryMutation({
     selectFromResult: ({ data }) => ({
@@ -22,7 +23,7 @@ const ProfitGraphs = () => {
 
   // eslint-disable-next-line no-return-assign
   const profitCumulativeSum = (profitDataSummed => currentProfitData => ({
-    sellTime: getFormattedDate(currentProfitData.sellTime),
+    sellTime: getFormattedTimestamp(currentProfitData.sellTime),
     profit: profitDataSummed.profit += currentProfitData.profit
   }))({ sellTime: 0, profit: 0 })
 

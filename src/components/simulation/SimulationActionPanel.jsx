@@ -6,7 +6,7 @@ import { selectFromTime, selectToTime } from '../../redux/slice/date-picker.slic
 import { selectChosenSymbols, selectUseAllSymbols } from '../../redux/slice/symbol.slice'
 import { useAllSymbolsQuery } from '../../redux/api/trading-pair.api'
 import { Endpoint } from '../../constant'
-import { getEpochMilli } from '../../utils/time-utils'
+import { getIsoTimestamp } from '../../utils/time-utils'
 import { useSimulateMutation } from '../../redux/api/simulation.api'
 
 const SimulationActionPanel = () => {
@@ -18,8 +18,8 @@ const SimulationActionPanel = () => {
   const { data: allSymbols = [] } = useAllSymbolsQuery(undefined, { refetchOnMountOrArgChange: true })
   const payload = {
     symbols: useAll ? allSymbols : chosenSymbols,
-    fromTimestamp: getEpochMilli(fromTime),
-    toTimestamp: getEpochMilli(toTime)
+    fromTimestamp: getIsoTimestamp(fromTime),
+    toTimestamp: getIsoTimestamp(toTime)
   }
 
   return (

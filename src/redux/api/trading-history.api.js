@@ -17,15 +17,8 @@ export const tradingHistoryApi = createApi({
           url: Endpoint.HISTORY,
           params: { fromTimestamp, toTimestamp }
         })
-    }),
-    simulationHistory: builder.mutation({
-      query: ({ fromTimestamp, toTimestamp }) => (
-        {
-          url: Endpoint.SIMULATION,
-          params: { fromTimestamp, toTimestamp }
-        })
     })
   })
 })
 
-export const { useTradingHistoryMutation, useSimulationHistoryMutation } = tradingHistoryApi
+export const { useTradingHistoryMutation } = tradingHistoryApi

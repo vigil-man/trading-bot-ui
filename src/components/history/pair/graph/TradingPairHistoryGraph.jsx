@@ -1,7 +1,7 @@
 import { CartesianGrid, Line, LineChart, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts'
 import IndicatorRecordTooltip from './IndicatorRecordTooltip'
 import { Dimmer, DimmerDimmable, Loader } from 'semantic-ui-react'
-import { getFormattedDate } from '../../../../utils/time-utils'
+import { getFormattedTimestamp } from '../../../../utils/time-utils'
 import ScoreDot from './ScoreDot'
 
 const TradingPairHistoryGraph = ({ data, isLoading }) => {
@@ -21,12 +21,12 @@ const TradingPairHistoryGraph = ({ data, isLoading }) => {
           <Tooltip
             filterNull={false}
             content={<IndicatorRecordTooltip />}
-            labelFormatter={epochMilli => getFormattedDate(epochMilli)}
+            labelFormatter={epochMilli => getFormattedTimestamp(epochMilli)}
           />
           <CartesianGrid strokeDasharray='3 3' />
           <XAxis
             dataKey={getTimestamp}
-            tickFormatter={timestamp => getFormattedDate(timestamp)}
+            tickFormatter={timestamp => getFormattedTimestamp(timestamp)}
           />
           <YAxis />
           <Line

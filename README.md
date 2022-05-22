@@ -24,3 +24,4 @@ Create .env file with variables described in the section below and then run
 
 - REACT_APP_CORE_BASE_URL - core app URL
 - REACT_APP_STRATEGY_BASE_URL - strategy app URL
+- REACT_APP_TRADING_BOT_URL - trading bot API gateway URL

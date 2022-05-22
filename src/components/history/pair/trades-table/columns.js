@@ -1,4 +1,4 @@
-import { getFormattedDate } from '../../../../utils/time-utils'
+import { getFormattedTimestamp } from '../../../../utils/time-utils'
 
 export const columns = [
   {
@@ -7,11 +7,11 @@ export const columns = [
   },
   {
     Header: 'Buy time',
-    accessor: row => getFormattedDate(row.buyCreationTimestamp)
+    accessor: row => getFormattedTimestamp(row.buyCreationTimestamp)
   },
   {
     Header: 'Sell time',
-    accessor: row => getFormattedDate(row.sellCreationTimestamp)
+    accessor: row => getFormattedTimestamp(row.sellCreationTimestamp)
   },
   {
     Header: 'Buy price',

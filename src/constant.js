@@ -24,7 +24,6 @@ export const DefaultTradingHistoryResponse = {
 export const Endpoint = {
   CANDLES: '/historical-data/candles',
   HISTORY: '/history',
-  HISTORY_SIMULATION: '/history/simulation',
   STATE: '/state',
   SELL_BOUGHT: '/transaction/sell-bought',
   ALL_SYMBOLS: '/pair/all-symbols',
