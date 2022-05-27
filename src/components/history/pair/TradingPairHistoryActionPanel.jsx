@@ -1,6 +1,6 @@
 import { Button, ButtonGroup, Dropdown, Grid, GridColumn } from 'semantic-ui-react'
 import DateRangePicker from '../../common/DateRangePicker'
-import { getEpochMilli } from '../../../utils/time-utils'
+import { getIsoTimestamp } from '../../../utils/time-utils'
 import { useSelector } from 'react-redux'
 import { selectFromTime, selectToTime } from '../../../redux/slice/date-picker.slice'
 import { useCandlesMutation } from '../../../redux/api/historical-data.api'
@@ -19,8 +19,8 @@ const TradingPairHistoryActionPanel = ({ symbol }) => {
 
   const payload = {
     symbol: symbol,
-    fromTimestamp: getEpochMilli(fromTime),
-    toTimestamp: getEpochMilli(toTime),
+    fromTimestamp: getIsoTimestamp(fromTime),
+    toTimestamp: getIsoTimestamp(toTime),
     intervalSeconds: step
   }
 
