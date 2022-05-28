@@ -9,4 +9,4 @@ export const getIsoTimestamp = formattedTime =>
   formattedTime ? moment(formattedTime, DATE_TIME_FORMAT).toISOString() : moment().toISOString()
 
 export const getFormattedDuration = isoDuration =>
-  isoDuration ? moment.duration(isoDuration).humanize(true) : moment.duration.invalid().humanize()
+  isoDuration ? moment.duration(isoDuration, 'minutes').humanize(true) : moment.duration.invalid().humanize()
