@@ -5,11 +5,11 @@ import { getFormattedTimestamp } from '../../../../utils/time-utils'
 import ScoreDot from './ScoreDot'
 
 const TradingPairHistoryGraph = ({ data, isLoading }) => {
-  const firstClosePrice = data.find(itemData => itemData.closePrice)?.closePrice
-  const firstPriceLog = firstClosePrice ? Math.log(firstClosePrice) : 0
+  const firstOpenPrice = data.find(itemData => itemData.openPrice)?.openPrice
+  const firstPriceLog = firstOpenPrice ? Math.log(firstOpenPrice) : 0
   const getPriceLogDelta = itemData =>
-    itemData.closePrice ? Math.log(itemData.closePrice) - firstPriceLog : null
-  const getTimestamp = itemData => itemData.closeTimestamp || itemData.timestamp
+    itemData.openPrice ? Math.log(itemData.openPrice) - firstPriceLog : null
+  const getTimestamp = itemData => itemData.openTimestamp || itemData.timestamp
 
   return (
     <DimmerDimmable>
@@ -21,12 +21,12 @@ const TradingPairHistoryGraph = ({ data, isLoading }) => {
           <Tooltip
             filterNull={false}
             content={<IndicatorRecordTooltip />}
-            labelFormatter={epochMilli => getFormattedTimestamp(epochMilli)}
+            labelFormatter={isoTimestamp => getFormattedTimestamp(isoTimestamp)}
           />
           <CartesianGrid strokeDasharray='3 3' />
           <XAxis
             dataKey={getTimestamp}
-            tickFormatter={timestamp => getFormattedTimestamp(timestamp)}
+            tickFormatter={isoTimestamp => getFormattedTimestamp(isoTimestamp)}
           />
           <YAxis />
           <Line

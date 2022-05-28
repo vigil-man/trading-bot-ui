@@ -19,17 +19,12 @@ const ProfitGraphs = () => {
     fixedCacheKey: Endpoint.HISTORY
   })
 
-  const profitDataTimeComparator = (first, second) => first.sellTime - second.sellTime
-
-  // eslint-disable-next-line no-return-assign
-  const profitCumulativeSum = (profitDataSummed => currentProfitData => ({
-    sellTime: getFormattedTimestamp(currentProfitData.sellTime),
-    profit: profitDataSummed.profit += currentProfitData.profit
-  }))({ sellTime: 0, profit: 0 })
+  const profitDataTimeComparator = (first, second) =>
+    first.sellTime.localeCompare(second.sellTime)
 
   const getProfitDataArray = ([, data]) =>
     data.trades
-      .filter(trade => trade.sellCreationTimestamp !== 0)
+      .filter(trade => !!trade.sellCreationTimestamp)
       .map(trade => (
         {
           sellTime: trade.sellCreationTimestamp,
@@ -41,13 +36,17 @@ const ProfitGraphs = () => {
     Object.entries(pairs)
       .flatMap(getProfitDataArray)
       .sort(profitDataTimeComparator)
-      .map(profitCumulativeSum)
+      // eslint-disable-next-line no-return-assign
+      .map((profitDataSummed => currentProfitData => ({
+        sellTime: getFormattedTimestamp(currentProfitData.sellTime),
+        profit: profitDataSummed.profit += currentProfitData.profit
+      }))({ sellTime: 0, profit: 0 }))
   )
 
   return (
     <Container textAlign='center' fluid>
       <Header attached='bottom'>Real equity</Header>
-      <ResponsiveContainer width='100%' height={400}>
+      <ResponsiveContainer width='95%' height={400}>
         <LineChart data={profitGraphData(tradingPairs)}>
           <Tooltip />
           <Legend />
@@ -58,7 +57,7 @@ const ProfitGraphs = () => {
         </LineChart>
       </ResponsiveContainer>
       <Header attached='bottom'>Simulation equity</Header>
-      <ResponsiveContainer width='100%' height={400}>
+      <ResponsiveContainer width='95%' height={400}>
         <LineChart data={profitGraphData(simulationPairs)}>
           <Tooltip />
           <Legend />

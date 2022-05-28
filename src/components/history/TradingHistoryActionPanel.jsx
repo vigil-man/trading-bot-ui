@@ -1,6 +1,6 @@
 import { Button, Grid, GridColumn } from 'semantic-ui-react'
 import DateRangePicker from '../common/DateRangePicker'
-import { getEpochMilli } from '../../utils/time-utils'
+import { getIsoTimestamp } from '../../utils/time-utils'
 import { useSelector } from 'react-redux'
 import { selectFromTime, selectToTime } from '../../redux/slice/date-picker.slice'
 import { useTradingHistoryMutation } from '../../redux/api/trading-history.api'
@@ -11,8 +11,8 @@ const TradingHistoryActionPanel = () => {
   const toTime = useSelector(selectToTime)
   const [getHistory, { isLoading }] = useTradingHistoryMutation({ fixedCacheKey: Endpoint.HISTORY })
   const timeRange = {
-    fromTimestamp: getEpochMilli(fromTime),
-    toTimestamp: getEpochMilli(toTime)
+    fromTimestamp: getIsoTimestamp(fromTime),
+    toTimestamp: getIsoTimestamp(toTime)
   }
   return (
     <Grid centered padded>
