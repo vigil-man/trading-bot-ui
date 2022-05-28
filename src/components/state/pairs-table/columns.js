@@ -10,7 +10,7 @@ export const columns = [
     accessor: 'symbol'
   },
   {
-    Header: 'Last update ago',
+    Header: 'Last update',
     accessor: row => getFormattedDuration(row.minutesDeltaFromLastUpdate)
   },
   {
