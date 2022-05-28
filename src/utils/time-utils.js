@@ -7,3 +7,6 @@ export const getFormattedTimestamp = isoTimestamp =>
 
 export const getIsoTimestamp = formattedTime =>
   formattedTime ? moment(formattedTime, DATE_TIME_FORMAT).toISOString() : moment().toISOString()
+
+export const getFormattedDuration = isoDuration =>
+  isoDuration ? moment.duration(isoDuration).humanize() : ''

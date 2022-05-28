@@ -1,3 +1,5 @@
+import { getFormattedDuration } from '../../../utils/time-utils'
+
 export const columns = [
   {
     Header: '#',
@@ -8,8 +10,8 @@ export const columns = [
     accessor: 'symbol'
   },
   {
-    Header: 'Last update minutes ago',
-    accessor: 'minutesDeltaFromLastUpdate'
+    Header: 'Last update ago',
+    accessor: row => getFormattedDuration(row.minutesDeltaFromLastUpdate)
   },
   {
     Header: 'Bought',
