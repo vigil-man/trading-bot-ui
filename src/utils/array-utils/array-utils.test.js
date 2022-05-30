@@ -3,13 +3,15 @@ import { mergeSortedArrays } from './array-utils'
 const candles = [
   { closeTimestamp: '2022-10-10T22:00:00Z', closePrice: 1 },
   { closeTimestamp: '2022-10-20T22:00:00Z', closePrice: 2 },
-  { closeTimestamp: '2022-10-30T22:00:00Z', closePrice: 3 }
+  { closeTimestamp: '2022-10-30T22:00:00Z', closePrice: 3 },
+  { closeTimestamp: '2022-11-01T22:06:00.269606217Z', closePrice: 4 }
 ]
 const records = [
   { timestamp: '2022-10-05T22:00:00Z', data: 'somedata1' },
   { timestamp: '2022-10-15T22:00:00Z', data: 'somedata2' },
   { timestamp: '2022-10-30T22:00:00Z', data: 'somedata3' },
-  { timestamp: '2022-11-01T22:00:00Z', data: 'somedata4' }
+  { timestamp: '2022-11-01T22:00:00Z', data: 'somedata4' },
+  { timestamp: '2022-11-01T23:00:00Z', data: 'somedata5' }
 ]
 
 test('Should sort by key and merge objects with equal key during arrays merging',
@@ -20,7 +22,9 @@ test('Should sort by key and merge objects with equal key during arrays merging'
       { timestamp: '2022-10-15T22:00:00Z', data: 'somedata2' },
       { closeTimestamp: '2022-10-20T22:00:00Z', closePrice: 2 },
       { closeTimestamp: '2022-10-30T22:00:00Z', closePrice: 3, timestamp: '2022-10-30T22:00:00Z', data: 'somedata3' },
-      { timestamp: '2022-11-01T22:00:00Z', data: 'somedata4' }
+      { timestamp: '2022-11-01T22:00:00Z', data: 'somedata4' },
+      { closeTimestamp: '2022-11-01T22:06:00.269606217Z', closePrice: 4 },
+      { timestamp: '2022-11-01T23:00:00Z', data: 'somedata5' }
     ]
     expect(mergeSortedArrays(candles, records, 'closeTimestamp', 'timestamp'))
       .toStrictEqual(expectedResult)

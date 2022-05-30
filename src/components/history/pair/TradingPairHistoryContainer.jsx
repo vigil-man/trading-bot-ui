@@ -18,7 +18,7 @@ const TradingPairHistoryContainer = () => {
   const [, { data: strategyRecordsData = [], isLoading: isStrategyRecordsLoading }] =
     useStrategyRecordsMutation({ fixedCacheKey: Endpoint.STRATEGY_RECORDS })
   const mergedData = useMemo(
-    () => mergeSortedArrays(candlesData, strategyRecordsData, 'closeTimestamp', 'timestamp'),
+    () => mergeSortedArrays(candlesData, strategyRecordsData, 'openTimestamp', 'timestamp'),
     [candlesData, strategyRecordsData]
   )
 

@@ -1,15 +1,14 @@
 export const mergeSortedArrays = (array1, array2, array1Key, array2Key) => {
   const result = []
   if (array1.length && array2.length) {
-    const maxLength = Math.max(array1.length, array2.length)
     let arr1i = 0
     let arr2i = 0
-    while (arr1i < maxLength && arr2i < maxLength) {
-      if (arr1i >= array1.length) {
+    while (arr1i < array1.length || arr2i < array2.length) {
+      if (arr1i === array1.length) {
         result.push(...array2.slice(arr2i))
         break
       }
-      if (arr2i >= array2.length) {
+      if (arr2i === array2.length) {
         result.push(...array1.slice(arr1i))
         break
       }
