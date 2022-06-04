@@ -3,7 +3,7 @@ import { Endpoint, ReducerPath } from '../../constant'
 
 export const historicalDataApi = createApi({
   reducerPath: ReducerPath.HISTORICAL_DATA,
-  baseQuery: fetchBaseQuery({ baseUrl: process.env.REACT_APP_CORE_BASE_URL }),
+  baseQuery: fetchBaseQuery({ baseUrl: process.env.REACT_APP_TRADING_BOT_URL }),
   endpoints: builder => ({
     candles: builder.mutation({
       query: ({ symbol, fromTimestamp, toTimestamp, intervalSeconds }) => (

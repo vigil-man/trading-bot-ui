@@ -3,7 +3,7 @@ import moment from 'moment'
 export const DATE_TIME_FORMAT = 'yyyy MMM/DD - HH:mm'
 
 export const getFormattedTimestamp = isoTimestamp =>
-  isoTimestamp ? moment(isoTimestamp).format(DATE_TIME_FORMAT) : ''
+  isoTimestamp && isoTimestamp !== 'auto' ? moment(isoTimestamp).format(DATE_TIME_FORMAT) : ''
 
 export const getIsoTimestamp = formattedTime =>
   formattedTime ? moment(formattedTime, DATE_TIME_FORMAT).toISOString() : moment().toISOString()

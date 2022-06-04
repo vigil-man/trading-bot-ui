@@ -34,11 +34,11 @@ const IndicatorRecordTooltip = props => {
     const newPayload = payload.strategyName
       ? getStrategyPayload(payload)
       : [...props.payload]
-    if (payload.closePrice) {
+    if (payload.openPrice) {
       newPayload.push(
         {
           name: 'Price',
-          value: payload.closePrice
+          value: payload.openPrice
         }
       )
     }
