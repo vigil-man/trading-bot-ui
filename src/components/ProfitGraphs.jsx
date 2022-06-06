@@ -45,7 +45,7 @@ const ProfitGraphs = () => {
 
   return (
     <Container textAlign='center' fluid>
-      <Header attached='bottom'>Real equity</Header>
+      <Header attached='bottom'>Real profit</Header>
       <ResponsiveContainer width='95%' height={400}>
         <LineChart data={profitGraphData(tradingPairs)}>
           <Tooltip />
@@ -56,7 +56,7 @@ const ProfitGraphs = () => {
           <Line dataKey='profit' type='monotone' stroke='#d3be55' dot={null} />
         </LineChart>
       </ResponsiveContainer>
-      <Header attached='bottom'>Simulation equity</Header>
+      <Header attached='bottom'>Simulation profit</Header>
       <ResponsiveContainer width='95%' height={400}>
         <LineChart data={profitGraphData(simulationPairs)}>
           <Tooltip />
