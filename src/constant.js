@@ -23,12 +23,12 @@ export const DefaultTradingHistoryResponse = {
 
 export const Endpoint = {
   CANDLES: '/historical-data/candles',
+  STATS: '/historical-data/stats',
   HISTORY: '/history',
   STATE: '/state',
   SELL_BOUGHT: '/transaction/sell-bought',
   ALL_SYMBOLS: '/pair/all-symbols',
   ALL_PAIRS: '/pair/all',
-
   TOGGLE_TRADING: '/config/toggle-trading',
   TRADING_ENABLED: '/config/trading-enabled',
   SIMULATION: '/simulation',

@@ -5,6 +5,7 @@ import TradingPairHistoryContainer from './components/history/pair/TradingPairHi
 import React from 'react'
 import TradingHistory from './components/history/TradingHistory'
 import TradingState from './components/state/TradingState'
+import HistoricalStats from './components/stats/HistoricalStats'
 
 const Routes = () => (
   <Switch>
@@ -13,6 +14,9 @@ const Routes = () => (
     </Route>
     <Route path='/simulation'>
       <Simulation />
+    </Route>
+    <Route path='/stats'>
+      <HistoricalStats />
     </Route>
     <Route path='/graphs'>
       <ProfitGraphs />

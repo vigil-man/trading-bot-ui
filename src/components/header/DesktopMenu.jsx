@@ -9,10 +9,13 @@ const DesktopMenu = () =>
         Overview
       </Menu.Item>
       <Menu.Item as={Link} to='/history'>
-        History
+        Trading history
       </Menu.Item>
       <Menu.Item as={Link} to='/simulation'>
         Simulation
+      </Menu.Item>
+      <Menu.Item as={Link} to='/stats'>
+        Historical stats
       </Menu.Item>
       <Menu.Item as={Link} to='/graphs'>
         Graphs

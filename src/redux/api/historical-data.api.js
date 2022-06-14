@@ -11,8 +11,15 @@ export const historicalDataApi = createApi({
           url: `${Endpoint.CANDLES}/${symbol}`,
           params: { fromTimestamp, toTimestamp, intervalSeconds }
         })
+    }),
+    stats: builder.mutation({
+      query: ({ fromTimestamp, toTimestamp }) => (
+        {
+          url: Endpoint.STATS,
+          params: { fromTimestamp, toTimestamp }
+        })
     })
   })
 })
 
-export const { useCandlesMutation } = historicalDataApi
+export const { useCandlesMutation, useStatsMutation } = historicalDataApi
