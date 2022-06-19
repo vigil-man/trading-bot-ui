@@ -10,5 +10,9 @@ export const columns = [
   {
     Header: 'Amplitude',
     accessor: 'amplitude'
+  },
+  {
+    Header: 'Delta',
+    accessor: 'delta'
   }
 ]

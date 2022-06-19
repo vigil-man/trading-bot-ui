@@ -24,8 +24,7 @@ const getMiddleware = additionalMiddleware =>
 export default function configureAppStore () {
   const persistConfig = {
     key: 'root',
-    storage,
-    blacklist: [historicalDataApi.reducerPath]
+    storage
   }
   const persistedReducer = persistReducer(persistConfig, rootReducer)
   const additionalMiddleware = [
