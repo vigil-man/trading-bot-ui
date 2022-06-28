@@ -1,3 +1,5 @@
+import _ from 'lodash'
+
 export const columns = [
   {
     Header: '#',
@@ -5,26 +7,14 @@ export const columns = [
   },
   {
     Header: 'Symbol',
-    accessor: 'symbol',
+    accessor: 'symbol'
   },
   {
-    Header: 'Total profit',
-    accessor: 'totalProfit',
+    Header: 'Profit',
+    accessor: row => _.round(row.profit, 2)
   },
   {
-    Header: 'Trades count',
-    accessor: 'tradesCount',
-  },
-  {
-    Header: 'Cancelled orders',
-    accessor: 'cancelledOrders',
-  },
-  {
-    Header: 'Filled orders',
-    accessor: 'filledOrders',
-  },
-  {
-    Header: 'Filled to cancelled ratio',
-    accessor: 'filledToCancelledRatio',
-  },
+    Header: 'Orders count',
+    accessor: 'ordersCount'
+  }
 ]

@@ -7,12 +7,16 @@ const TradesSummary = () => {
     <Table celled>
       <TableBody>
         <TableRow>
-          <TableCell>Total Profit</TableCell>
-          <TableCell>{state?.totalProfit ?? 0}</TableCell>
+          <TableCell>Profit</TableCell>
+          <TableCell>{state.profit?.toFixed(2) ?? 0}</TableCell>
         </TableRow>
         <TableRow>
-          <TableCell>Trades count</TableCell>
-          <TableCell>{state?.tradesCount ?? 0}</TableCell>
+          <TableCell>Commission</TableCell>
+          <TableCell>{state.commission?.toFixed(2) ?? 0}</TableCell>
+        </TableRow>
+        <TableRow>
+          <TableCell>Orders</TableCell>
+          <TableCell>{state.positions?.length ?? 0}</TableCell>
         </TableRow>
       </TableBody>
     </Table>

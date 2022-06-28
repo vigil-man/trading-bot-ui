@@ -6,19 +6,12 @@ export const TradingActionColor = {
 }
 
 export const DefaultTradingHistoryResponse = {
-  totalProfit: 0,
-  avgProfit: 0,
-  avgPriceDeltaPercent: 0,
-  tradingPairs: {},
-  positiveTradesProfit: 0,
-  negativeTradesProfit: 0,
-
-  notFilledOrdersCount: 0,
-  filledOrdersCount: 0,
-  semiFilledOrdersCount: 0,
-  positiveTradesCount: 0,
-  negativeTradesCount: 0,
-  zeroTradesCount: 0
+  summary: {
+    totalCommission: 0,
+    totalProfit: 0,
+    ordersCount: 0
+  },
+  symbolPositions: {}
 }
 
 export const Endpoint = {

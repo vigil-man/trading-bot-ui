@@ -11,21 +11,15 @@ const TradingPairsHistoryTable = ({ tradingPairs, isLoading }) => {
       ([symbol, data]) => (
         {
           symbol: symbol,
-          totalProfit: data.totalProfit,
-          tradesCount: data.tradesCount,
-          cancelledOrders: data.cancelledOrders,
-          filledOrders: data.filledOrders,
-          filledToCancelledRatio: data.filledToCancelledRatio
+          profit: data.profit,
+          ordersCount: data.positions?.length
         }
       )
     ),
     [tradingPairs]
   )
 
-  const getSortType = column =>
-    column.id === 'totalProfit' || column.id === 'filledToCancelledRatio'
-      ? 'basic'
-      : 'alphanumeric'
+  const getSortType = () => 'basic'
 
   const onRowClick = row => history.push({
     pathname: `/history/${row.original.symbol}`,

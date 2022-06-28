@@ -1,4 +1,5 @@
 import { getFormattedTimestamp } from '../../../../utils/time-utils'
+import _ from 'lodash'
 
 export const columns = [
   {
@@ -6,27 +7,31 @@ export const columns = [
     accessor: (row, i) => i + 1
   },
   {
-    Header: 'Buy time',
-    accessor: row => getFormattedTimestamp(row.buyCreationTimestamp)
+    Header: 'Timestamp',
+    accessor: row => getFormattedTimestamp(row.timestamp)
   },
   {
-    Header: 'Sell time',
-    accessor: row => getFormattedTimestamp(row.sellCreationTimestamp)
+    Header: 'Side',
+    accessor: 'side'
   },
   {
-    Header: 'Buy price',
-    accessor: 'buyPrice'
+    Header: 'Size',
+    accessor: 'orderSize'
   },
   {
-    Header: 'Sell price',
-    accessor: 'sellPrice'
+    Header: 'Price',
+    accessor: 'price'
   },
   {
-    Header: 'Price delta percent',
-    accessor: 'priceDeltaPercent'
+    Header: 'Total size',
+    accessor: 'totalSize'
   },
   {
-    Header: 'Profit',
-    accessor: 'profit'
+    Header: 'Value',
+    accessor: row => _.round(row.value, 2)
+  },
+  {
+    Header: 'P&L',
+    accessor: row => _.round(row.pNl, 2)
   }
 ]

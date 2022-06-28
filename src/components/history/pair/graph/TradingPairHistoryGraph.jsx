@@ -9,7 +9,7 @@ const TradingPairHistoryGraph = ({ data, isLoading }) => {
   const firstPriceLog = firstOpenPrice ? Math.log(firstOpenPrice) : 0
   const getPriceLogDelta = itemData =>
     itemData.openPrice ? Math.log(itemData.openPrice) - firstPriceLog : null
-  const getTimestamp = itemData => itemData.openTimestamp || itemData.timestamp
+  const getTimestamp = itemData => itemData.beginTime || itemData.timestamp
 
   return (
     <DimmerDimmable>

@@ -7,14 +7,11 @@ const TradesTable = () => {
   const { state } = useLocation()
 
   const data = useMemo(
-    () => state?.trades || [],
+    () => state.positions || [],
     [state]
   )
 
-  const getSortType = column =>
-    column.id === 'priceDeltaPercent' || column.id === 'profit'
-      ? 'basic'
-      : 'alphanumeric'
+  const getSortType = () => 'basic'
 
   return (
     <SortableTable

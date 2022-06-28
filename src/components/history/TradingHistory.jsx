@@ -18,12 +18,12 @@ const TradingHistory = () => {
       </GridRow>
       <GridRow>
         <GridColumn>
-          <TradingHistoryStatistics history={data} isLoading={isLoading} />
+          <TradingHistoryStatistics totals={data.summary} isLoading={isLoading} />
         </GridColumn>
       </GridRow>
       <GridRow>
         <GridColumn width={15}>
-          <TradingPairsHistoryTable tradingPairs={data.tradingPairs} isLoading={isLoading} />
+          <TradingPairsHistoryTable tradingPairs={data.symbolPositions} isLoading={isLoading} />
         </GridColumn>
       </GridRow>
     </Grid>
