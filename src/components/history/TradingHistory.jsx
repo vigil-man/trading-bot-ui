@@ -18,7 +18,7 @@ const TradingHistory = () => {
       </GridRow>
       <GridRow>
         <GridColumn>
-          <TradingHistoryStatistics totals={data.summary} isLoading={isLoading} />
+          <TradingHistoryStatistics summary={data.summary} isLoading={isLoading} />
         </GridColumn>
       </GridRow>
       <GridRow>
