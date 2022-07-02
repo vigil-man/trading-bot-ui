@@ -27,8 +27,12 @@ export const columns = [
     accessor: 'totalSize'
   },
   {
-    Header: 'Value',
-    accessor: row => _.round(row.value, 2)
+    Header: 'Used value',
+    accessor: row => _.round(row.valueUsed, 2)
+  },
+  {
+    Header: 'Delta, %',
+    accessor: row => _.round(row.pNlDeltaPercent, 2)
   },
   {
     Header: 'P&L',
