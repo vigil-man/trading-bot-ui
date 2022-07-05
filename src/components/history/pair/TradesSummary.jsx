@@ -8,15 +8,11 @@ const TradesSummary = () => {
       <TableBody>
         <TableRow>
           <TableCell>Profit</TableCell>
-          <TableCell>{state.profit?.toFixed(2) ?? 0}</TableCell>
-        </TableRow>
-        <TableRow>
-          <TableCell>Commission</TableCell>
-          <TableCell>{state.commission?.toFixed(2) ?? 0}</TableCell>
+          <TableCell>{state.at(-1)?.pNl?.toFixed(2) ?? 0}</TableCell>
         </TableRow>
         <TableRow>
           <TableCell>Orders</TableCell>
-          <TableCell>{state.positions?.length ?? 0}</TableCell>
+          <TableCell>{state.length ?? 0}</TableCell>
         </TableRow>
       </TableBody>
     </Table>

@@ -6,11 +6,10 @@ export const TradingActionColor = {
 }
 
 export const DefaultTradingHistoryResponse = {
-  summary: {
-    totalCommission: 0,
-    totalProfit: 0,
-    ordersCount: 0
-  },
+  totalProfit: 0,
+  totalCommission: 0,
+  sharpeRatio: 0,
+  ordersCount: 0,
   symbolPositions: {}
 }
 

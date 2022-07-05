@@ -11,8 +11,8 @@ const TradingPairsHistoryTable = ({ tradingPairs, isLoading }) => {
       ([symbol, data]) => (
         {
           symbol: symbol,
-          profit: data.profit,
-          ordersCount: data.positions?.length
+          profit: data.at(-1)?.pNl ?? 0,
+          ordersCount: data.length
         }
       )
     ),

@@ -16,7 +16,7 @@ export const columns = [
   },
   {
     Header: 'Size',
-    accessor: 'orderSize'
+    accessor: row => _.round(row.orderSize, 8)
   },
   {
     Header: 'Price',
@@ -24,18 +24,22 @@ export const columns = [
   },
   {
     Header: 'Total size',
-    accessor: 'totalSize'
+    accessor: row => _.round(row.totalSize, 8)
   },
   {
-    Header: 'Used value',
-    accessor: row => _.round(row.valueUsed, 2)
-  },
-  {
-    Header: 'Delta, %',
-    accessor: row => _.round(row.pNlDeltaPercent, 2)
+    Header: 'Total value used',
+    accessor: row => _.round(row.totalValueUsed, 2)
   },
   {
     Header: 'P&L',
     accessor: row => _.round(row.pNl, 2)
+  },
+  {
+    Header: 'P&L Delta',
+    accessor: row => _.round(row.pNlDelta, 2)
+  },
+  {
+    Header: 'P&L Delta, %',
+    accessor: row => _.round(row.pNlDeltaPercent, 2)
   }
 ]

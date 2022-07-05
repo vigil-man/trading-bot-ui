@@ -15,16 +15,12 @@ const TradingHistoryStatistics = ({ summary, isLoading }) => (
             <Statistic.Label>Total commission</Statistic.Label>
           </Statistic>
           <Statistic>
+            <Statistic.Value>{summary.sharpeRatio.toFixed(2)}</Statistic.Value>
+            <Statistic.Label>Sharpe ratio</Statistic.Label>
+          </Statistic>
+          <Statistic>
             <Statistic.Value>{summary.ordersCount}</Statistic.Value>
             <Statistic.Label>Orders</Statistic.Label>
-          </Statistic>
-          <Statistic>
-            <Statistic.Value>$ {summary.positiveTradesProfit}</Statistic.Value>
-            <Statistic.Label>Positive orders profit</Statistic.Label>
-          </Statistic>
-          <Statistic>
-            <Statistic.Value>{summary.sharpeRatio}</Statistic.Value>
-            <Statistic.Label>Sharpe ratio</Statistic.Label>
           </Statistic>
         </StatisticGroup>
       </GridColumn>

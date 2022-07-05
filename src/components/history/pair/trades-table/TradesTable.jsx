@@ -7,7 +7,7 @@ const TradesTable = () => {
   const { state } = useLocation()
 
   const data = useMemo(
-    () => state.positions || [],
+    () => state || [],
     [state]
   )
 
