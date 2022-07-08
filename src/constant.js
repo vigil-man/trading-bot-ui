@@ -9,7 +9,9 @@ export const DefaultTradingHistoryResponse = {
   totalProfit: 0,
   totalCommission: 0,
   sharpeRatio: 0,
+  maxDrawdown: 0,
   ordersCount: 0,
+  profitHistory: [],
   symbolPositions: {}
 }
 
