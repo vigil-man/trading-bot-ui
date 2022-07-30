@@ -5,15 +5,15 @@ import { Dimmer, DimmerDimmable, Loader } from 'semantic-ui-react'
 import { Endpoint } from '../../../constant'
 import { useStatsMutation } from '../../../redux/api/historical-data.api'
 import { useHistory } from 'react-router-dom'
-import { useSimulateMutation } from '../../../redux/api/simulation.api'
+import { useSimulationHistoryMutation } from '../../../redux/api/trading-history.api'
 
 const TradingPairsStatsTable = () => {
   const history = useHistory()
-  const [, { tradingPairs }] = useSimulateMutation({
+  const [, { tradingPairs }] = useSimulationHistoryMutation({
     selectFromResult: ({ data }) => ({
       tradingPairs: data?.tradingPairs ?? []
     }),
-    fixedCacheKey: Endpoint.SIMULATION
+    fixedCacheKey: Endpoint.SIMULATION_HISTORY
   })
   const [, { data: pairsStats = [], isLoading }] = useStatsMutation({ fixedCacheKey: Endpoint.STATS })
   const data = useMemo(

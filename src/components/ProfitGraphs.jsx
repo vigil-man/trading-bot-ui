@@ -1,16 +1,15 @@
 import { CartesianGrid, Legend, Line, LineChart, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts'
 import { Container, Header } from 'semantic-ui-react'
-import { useTradingHistoryMutation } from '../redux/api/trading-history.api'
+import { useSimulationHistoryMutation, useTradingHistoryMutation } from '../redux/api/trading-history.api'
 import { Endpoint } from '../constant'
-import { useSimulateMutation } from '../redux/api/simulation.api'
 import { getFormattedTimestamp } from '../utils/time-utils'
 
 const ProfitGraphs = () => {
-  const [, { simulationHistory }] = useSimulateMutation({
+  const [, { simulationHistory }] = useSimulationHistoryMutation({
     selectFromResult: ({ data }) => ({
       simulationHistory: data?.profitHistory ?? []
     }),
-    fixedCacheKey: Endpoint.SIMULATION
+    fixedCacheKey: Endpoint.SIMULATION_HISTORY
   })
   const [, { realHistory }] = useTradingHistoryMutation({
     selectFromResult: ({ data }) => ({

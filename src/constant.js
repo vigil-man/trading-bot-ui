@@ -19,6 +19,7 @@ export const Endpoint = {
   CANDLES: '/historical-data/candles',
   STATS: '/historical-data/stats',
   HISTORY: '/history',
+  SIMULATION_HISTORY: '/history/simulation',
   STATE: '/state',
   SELL_BOUGHT: '/transaction/sell-bought',
   ALL_SYMBOLS: '/pair/all-symbols',
