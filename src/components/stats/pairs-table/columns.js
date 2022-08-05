@@ -1,3 +1,5 @@
+import _ from 'lodash'
+
 export const columns = [
   {
     Header: '#',
@@ -14,5 +16,9 @@ export const columns = [
   {
     Header: 'Delta',
     accessor: 'delta'
+  },
+  {
+    Header: 'Profit',
+    accessor: row => _.round(row.profit, 2)
   }
 ]

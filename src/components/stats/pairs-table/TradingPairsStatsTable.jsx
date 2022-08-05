@@ -11,7 +11,7 @@ const TradingPairsStatsTable = () => {
   const history = useHistory()
   const [, { tradingPairs }] = useSimulationHistoryMutation({
     selectFromResult: ({ data }) => ({
-      tradingPairs: data?.tradingPairs ?? []
+      tradingPairs: data?.symbolPositions ?? []
     }),
     fixedCacheKey: Endpoint.SIMULATION_HISTORY
   })
@@ -22,7 +22,8 @@ const TradingPairsStatsTable = () => {
         {
           symbol: pairStats.symbol,
           amplitude: pairStats.amplitude,
-          delta: pairStats.logDelta
+          delta: pairStats.logDelta,
+          profit: tradingPairs[pairStats.symbol]?.at(-1)?.pNl ?? 0
         }
       )
     ),
