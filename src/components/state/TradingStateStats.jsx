@@ -15,8 +15,12 @@ const TradingStateStats = () => {
           <Statistic.Label>Last update</Statistic.Label>
         </Statistic>
         <Statistic>
-          <Statistic.Value>{data.boughtPairsCount}</Statistic.Value>
-          <Statistic.Label>Bought pairs</Statistic.Label>
+          <Statistic.Value>{data.shortPositionsCount}</Statistic.Value>
+          <Statistic.Label>Short positions</Statistic.Label>
+        </Statistic>
+        <Statistic>
+          <Statistic.Value>{data.longPositionsCount}</Statistic.Value>
+          <Statistic.Label>Long positions</Statistic.Label>
         </Statistic>
         <Statistic>
           <Statistic.Value>{data.activePairsCount}</Statistic.Value>

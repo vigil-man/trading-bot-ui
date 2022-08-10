@@ -27,7 +27,7 @@ const TradingPairsStateTable = () => {
         {
           symbol: tradingPairState.symbol,
           minutesDeltaFromLastUpdate: tradingPairState.minutesDeltaFromLastUpdate,
-          bought: String(tradingPairState.bought),
+          positionState: tradingPairState.positionState,
           active: String(tradingPairState.active)
         }
       )

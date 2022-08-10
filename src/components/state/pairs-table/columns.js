@@ -14,8 +14,8 @@ export const columns = [
     accessor: row => getFormattedDuration(row.minutesDeltaFromLastUpdate)
   },
   {
-    Header: 'Bought',
-    accessor: 'bought'
+    Header: 'Position state',
+    accessor: 'positionState'
   },
   {
     Header: 'Active',
