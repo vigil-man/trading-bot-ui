@@ -21,7 +21,7 @@ export const Endpoint = {
   HISTORY: '/history',
   SIMULATION_HISTORY: '/history/simulation',
   STATE: '/state',
-  SELL_BOUGHT: '/transaction/sell-bought',
+  CLOSE_POSITIONS: '/transaction/sell-bought',
   ALL_SYMBOLS: '/pair/all-symbols',
   ALL_PAIRS: '/pair/all',
   TOGGLE_TRADING: '/config/toggle-trading',

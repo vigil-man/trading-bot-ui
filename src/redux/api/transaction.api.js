@@ -5,15 +5,15 @@ export const transactionApi = createApi({
   reducerPath: ReducerPath.TRANSACTION,
   baseQuery: fetchBaseQuery({ baseUrl: process.env.REACT_APP_TRADING_BOT_URL }),
   endpoints: builder => ({
-    sellBought: builder.mutation({
+    closePositions: builder.mutation({
       query: () => (
         {
           method: 'PUT',
-          url: Endpoint.SELL_BOUGHT
+          url: Endpoint.CLOSE_POSITIONS
         }
       )
     })
   })
 })
 
-export const { useSellBoughtMutation } = transactionApi
+export const { useClosePositionsMutation } = transactionApi

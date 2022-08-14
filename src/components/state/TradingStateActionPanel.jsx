@@ -2,12 +2,12 @@ import { Button, ButtonGroup, Checkbox, Grid, GridColumn } from 'semantic-ui-rea
 import TradingStateStats from './TradingStateStats'
 import { useTradingStateMutation } from '../../redux/api/trading-state.api'
 import { Endpoint } from '../../constant'
-import { useSellBoughtMutation } from '../../redux/api/transaction.api'
+import { useClosePositionsMutation } from '../../redux/api/transaction.api'
 import { useToggleTradingMutation, useTradingEnabledQuery } from '../../redux/api/config.api'
 
 const TradingStateActionPanel = () => {
   const [getTradingState, { isLoading: tradingStateLoading }] = useTradingStateMutation({ fixedCacheKey: Endpoint.STATE })
-  const [sellBought, { isLoading: sellBoughtLoading }] = useSellBoughtMutation({ fixedCacheKey: Endpoint.SELL_BOUGHT })
+  const [closePositions, { isLoading: closePositionsLoading }] = useClosePositionsMutation({ fixedCacheKey: Endpoint.CLOSE_POSITIONS })
   const [toggleTrading, { data: tradingEnabledMutation, isLoading: tradingEnabledLoading }] = useToggleTradingMutation()
   const { data: tradingEnabledQuery } = useTradingEnabledQuery(undefined, { refetchOnMountOrArgChange: true })
 
@@ -17,9 +17,9 @@ const TradingStateActionPanel = () => {
         <ButtonGroup vertical>
           <Button
             primary
-            onClick={sellBought}
-            loading={sellBoughtLoading}
-            content='Sell bought'
+            onClick={closePositions}
+            loading={closePositionsLoading}
+            content='Close positions'
           />
           <Checkbox
             as={Button}
