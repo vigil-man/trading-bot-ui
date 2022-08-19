@@ -12,8 +12,16 @@ export const transactionApi = createApi({
           url: Endpoint.CLOSE_POSITIONS
         }
       )
+    }),
+    alignPositions: builder.mutation({
+      query: () => (
+        {
+          method: 'PUT',
+          url: Endpoint.ALIGN_POSITIONS
+        }
+      )
     })
   })
 })
 
-export const { useClosePositionsMutation } = transactionApi
+export const { useClosePositionsMutation, useAlignPositionsMutation } = transactionApi

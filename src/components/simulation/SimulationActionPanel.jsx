@@ -1,4 +1,4 @@
-import { Button, ButtonGroup, Grid, GridColumn } from 'semantic-ui-react'
+import { Button, Divider, Grid, GridColumn } from 'semantic-ui-react'
 import SymbolSelector from './SymbolSelector'
 import DateRangePicker from '../common/DateRangePicker'
 import { useSelector } from 'react-redux'
@@ -25,7 +25,7 @@ const SimulationActionPanel = () => {
   }
 
   return (
-    <Grid centered verticalAlign='middle'>
+    <Grid padded centered verticalAlign='middle'>
       <GridColumn width={7}>
         <SymbolSelector
           allSymbols={allSymbols}
@@ -35,22 +35,21 @@ const SimulationActionPanel = () => {
         />
       </GridColumn>
       <GridColumn width={9}>
-        <Grid centered>
-          <GridColumn width={6} verticalAlign='middle'>
-            <ButtonGroup vertical>
-              <Button
-                primary
-                onClick={() => executeSimulation(payload)}
-                loading={isLoading}
-                content='Execute Simulation'
-              />
-              <Button
-                primary
-                onClick={() => getSimulationHistory(payload)}
-                loading={historyLoading}
-                content='Get history'
-              />
-            </ButtonGroup>
+        <Grid centered padded verticalAlign='middle'>
+          <GridColumn width={6} textAlign='center'>
+            <Button
+              primary
+              onClick={() => executeSimulation(payload)}
+              loading={isLoading}
+              content='Execute Simulation'
+            />
+            <Divider />
+            <Button
+              primary
+              onClick={() => getSimulationHistory(payload)}
+              loading={historyLoading}
+              content='Get history'
+            />
           </GridColumn>
           <GridColumn width={8}>
             <DateRangePicker fromTime={fromTime} toTime={toTime} />
