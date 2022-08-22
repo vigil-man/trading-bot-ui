@@ -27,7 +27,7 @@ const TradingPairsStatsTable = () => {
         }
       )
     ),
-    [pairsStats]
+    [pairsStats, tradingPairs]
   ) || []
 
   const getSortType = () => 'basic'
