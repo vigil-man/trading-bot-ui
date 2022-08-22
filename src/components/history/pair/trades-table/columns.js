@@ -23,23 +23,11 @@ export const columns = [
     accessor: 'price'
   },
   {
-    Header: 'Total size',
-    accessor: row => _.round(row.totalSize, 8)
-  },
-  {
-    Header: 'Total value used',
-    accessor: row => _.round(row.totalValueUsed, 2)
-  },
-  {
-    Header: 'P&L',
-    accessor: row => _.round(row.pNl, 2)
-  },
-  {
     Header: 'P&L Delta',
     accessor: row => _.round(row.pNlDelta, 2)
   },
   {
-    Header: 'P&L Delta, %',
-    accessor: row => _.round(row.pNlDeltaPercent, 2)
+    Header: 'P&L',
+    accessor: row => _.round(row.pNl, 2)
   }
 ]
