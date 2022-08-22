@@ -15,7 +15,7 @@ const TradingStateStats = () => {
 
   const items = [
     getStatistic(getFormattedTimestamp(data.timestamp), 'Last update'),
-    getStatistic(`${data?.marginFraction.toFixed(2)} %`, 'Margin fraction'),
+    getStatistic(`${data.marginFraction?.toFixed(2)} %`, 'Margin fraction'),
     getStatistic(data.shortPositionsCount, 'Short positions'),
     getStatistic(data.longPositionsCount, 'Long positions'),
     getStatistic(data.activePairsCount, 'Active pairs')
