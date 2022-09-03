@@ -1,35 +1,33 @@
-import { Dimmer, DimmerDimmable, Grid, GridColumn, Statistic, StatisticGroup } from 'semantic-ui-react'
+import { Dimmer, DimmerDimmable, Grid, GridColumn, StatisticGroup } from 'semantic-ui-react'
 
-const TradingHistoryStatistics = ({ summary, isLoading }) => (
-  <DimmerDimmable blurring dimmed={isLoading}>
-    <Dimmer active={isLoading} inverted />
-    <Grid centered padded>
-      <GridColumn width={15}>
-        <StatisticGroup size='mini'>
-          <Statistic>
-            <Statistic.Value>$ {summary.totalProfit.toFixed(2)}</Statistic.Value>
-            <Statistic.Label>Total profit</Statistic.Label>
-          </Statistic>
-          <Statistic>
-            <Statistic.Value>$ {summary.maxDrawdown.toFixed(2)}</Statistic.Value>
-            <Statistic.Label>Max drawdown</Statistic.Label>
-          </Statistic>
-          <Statistic>
-            <Statistic.Value>{summary.sharpeRatio.toFixed(2)}</Statistic.Value>
-            <Statistic.Label>Sharpe ratio</Statistic.Label>
-          </Statistic>
-          <Statistic>
-            <Statistic.Value>$ {summary.totalCommission.toFixed(2)}</Statistic.Value>
-            <Statistic.Label>Total commission</Statistic.Label>
-          </Statistic>
-          <Statistic>
-            <Statistic.Value>{summary.ordersCount}</Statistic.Value>
-            <Statistic.Label>Orders</Statistic.Label>
-          </Statistic>
-        </StatisticGroup>
-      </GridColumn>
-    </Grid>
-  </DimmerDimmable>
-)
+const TradingHistoryStatistics = ({ summary, isLoading }) => {
+  const getStatistic = (value, label) => (
+    {
+      value: value,
+      label: label
+    }
+  )
+
+  const items = [
+    getStatistic(summary.totalProfit.toFixed(2), 'Total profit $'),
+    getStatistic(summary.maxDrawdown.toFixed(2), 'Max profit drawdown $'),
+    getStatistic(summary.accountBalanceHistory.maxDrawdown.toFixed(2), 'Max equity drawdown $'),
+    getStatistic(summary.accountBalanceHistory.maxDrawdownPercent.toFixed(2), 'Max equity drawdown percent'),
+    getStatistic(summary.sharpeRatio.toFixed(2), 'Sharpe ratio'),
+    getStatistic(summary.totalCommission.toFixed(2), 'Total commission'),
+    getStatistic(summary.ordersCount, 'Orders')
+  ]
+
+  return (
+    <DimmerDimmable blurring dimmed={isLoading}>
+      <Dimmer active={isLoading} inverted />
+      <Grid centered padded>
+        <GridColumn width={15}>
+          <StatisticGroup size='mini' items={items} />
+        </GridColumn>
+      </Grid>
+    </DimmerDimmable>
+  )
+}
 
 export default TradingHistoryStatistics

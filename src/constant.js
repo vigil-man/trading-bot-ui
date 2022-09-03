@@ -12,7 +12,13 @@ export const DefaultTradingHistoryResponse = {
   maxDrawdown: 0,
   ordersCount: 0,
   profitHistory: [],
-  symbolPositions: {}
+  equityHistory: [],
+  symbolPositions: {},
+  accountBalanceHistory: {
+    maxDrawdown: 0,
+    maxDrawdownPercent: 0,
+    equityHistory: []
+  }
 }
 
 export const Endpoint = {

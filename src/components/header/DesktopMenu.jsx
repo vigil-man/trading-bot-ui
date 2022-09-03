@@ -20,6 +20,9 @@ const DesktopMenu = () =>
       <Menu.Item as={Link} to='/graphs'>
         Graphs
       </Menu.Item>
+      <Menu.Item as={Link} to='/equity'>
+        Equity
+      </Menu.Item>
     </Menu>
   </Grid>
 

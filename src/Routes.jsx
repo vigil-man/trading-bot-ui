@@ -6,6 +6,7 @@ import React from 'react'
 import TradingHistory from './components/history/TradingHistory'
 import TradingState from './components/state/TradingState'
 import HistoricalStats from './components/stats/HistoricalStats'
+import EquityGraph from './components/EquityGraph'
 
 const Routes = () => (
   <Switch>
@@ -20,6 +21,9 @@ const Routes = () => (
     </Route>
     <Route path='/graphs'>
       <ProfitGraphs />
+    </Route>
+    <Route path='/equity'>
+      <EquityGraph />
     </Route>
     <Route exact path='/history'>
       <TradingHistory />
