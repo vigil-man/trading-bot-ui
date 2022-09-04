@@ -11,6 +11,7 @@ const TradingHistoryStatistics = ({ summary, isLoading }) => {
   const items = [
     getStatistic(summary.totalProfit.toFixed(2), 'Total profit $'),
     getStatistic(summary.maxDrawdown.toFixed(2), 'Max profit drawdown $'),
+    getStatistic(summary.accountBalanceHistory.unrealizedPnL?.toFixed(2), 'Unrealized profit $'),
     getStatistic(summary.accountBalanceHistory.maxDrawdown.toFixed(2), 'Max equity drawdown $'),
     getStatistic(summary.accountBalanceHistory.maxDrawdownPercent.toFixed(2), 'Max equity drawdown percent'),
     getStatistic(summary.sharpeRatio.toFixed(2), 'Sharpe ratio'),

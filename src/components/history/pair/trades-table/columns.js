@@ -15,12 +15,16 @@ export const columns = [
     accessor: 'side'
   },
   {
-    Header: 'Size',
+    Header: 'Order size',
     accessor: row => _.round(row.orderSize, 8)
   },
   {
     Header: 'Price',
     accessor: 'price'
+  },
+  {
+    Header: 'Position size',
+    accessor: 'totalSize'
   },
   {
     Header: 'P&L Delta',
