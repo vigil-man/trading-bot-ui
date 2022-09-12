@@ -15,7 +15,7 @@ export const DefaultTradingHistoryResponse = {
   equityHistory: [],
   symbolPositions: {},
   accountBalanceHistory: {
-    unrealizedPnL: 0,
+    collateral: 0,
     maxDrawdown: 0,
     maxDrawdownPercent: 0,
     equityHistory: []

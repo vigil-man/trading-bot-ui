@@ -1,22 +1,22 @@
 import { Dimmer, DimmerDimmable, Grid, GridColumn, StatisticGroup } from 'semantic-ui-react'
 
 const TradingHistoryStatistics = ({ summary, isLoading }) => {
-  const getStatistic = (value, label) => (
+  const getStatistic = (value, label, round = true) => (
     {
-      value: value,
+      value: round ? value?.toFixed(2) : value,
       label: label
     }
   )
 
   const items = [
-    getStatistic(summary.totalProfit.toFixed(2), 'Total profit $'),
-    getStatistic(summary.maxDrawdown.toFixed(2), 'Max profit drawdown $'),
-    getStatistic(summary.accountBalanceHistory.unrealizedPnL?.toFixed(2), 'Unrealized profit $'),
-    getStatistic(summary.accountBalanceHistory.maxDrawdown.toFixed(2), 'Max equity drawdown $'),
-    getStatistic(summary.accountBalanceHistory.maxDrawdownPercent.toFixed(2), 'Max equity drawdown percent'),
-    getStatistic(summary.sharpeRatio.toFixed(2), 'Sharpe ratio'),
-    getStatistic(summary.totalCommission.toFixed(2), 'Total commission'),
-    getStatistic(summary.ordersCount, 'Orders')
+    getStatistic(summary.totalProfit, 'Total profit $'),
+    getStatistic(summary.maxDrawdown, 'Max profit drawdown $'),
+    getStatistic(summary.accountBalanceHistory.collateral, 'Collateral $'),
+    getStatistic(summary.accountBalanceHistory.maxDrawdown, 'Max equity drawdown $'),
+    getStatistic(summary.accountBalanceHistory.maxDrawdownPercent, 'Max equity drawdown percent'),
+    getStatistic(summary.sharpeRatio, 'Sharpe ratio'),
+    getStatistic(summary.totalCommission, 'Total commission'),
+    getStatistic(summary.ordersCount, 'Orders', false)
   ]
 
   return (
