@@ -8,6 +8,7 @@ const TradingStateStats = () => {
 
   const getStatistic = (value, label) => (
     {
+      key: label,
       value: value,
       label: label
     }

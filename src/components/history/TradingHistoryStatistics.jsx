@@ -3,6 +3,7 @@ import { Dimmer, DimmerDimmable, Grid, GridColumn, StatisticGroup } from 'semant
 const TradingHistoryStatistics = ({ summary, isLoading }) => {
   const getStatistic = (value, label, round = true) => (
     {
+      key: label,
       value: round ? value?.toFixed(2) : value,
       label: label
     }
