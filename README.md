@@ -1,3 +1,4 @@
+# Moved to https://gitlab.com/swarm-tb/sb-ui
 # Features
 
 - [All pairs trading history view](https://github.com/vigil-man/trading-bot-ui/wiki/History)
